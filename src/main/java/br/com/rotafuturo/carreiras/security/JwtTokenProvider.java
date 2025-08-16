@@ -30,11 +30,7 @@ public class JwtTokenProvider {
 
     private final long JWT_EXPIRATION_IN_MS = 86400000; // 1 dia
 
-    /**
-     * Gera um token JWT para um usuario autenticado.
-     * @param authentication O objeto de autenticacao do usuario.
-     * @return A string do token JWT.
-     */
+ 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
         Date now = new Date();
@@ -48,11 +44,6 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    /**
-     * Extrai o nome de usuario (subject) de um token JWT.
-     * @param token O token a ser validado.
-     * @return O nome de usuario.
-     */
     public String getUsernameFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -62,11 +53,6 @@ public class JwtTokenProvider {
                 .getSubject();
     }
 
-    /**
-     * Valida um token JWT.
-     * @param token O token a ser validado.
-     * @return true se o token for valido, false caso contrario.
-     */
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
