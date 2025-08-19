@@ -9,6 +9,11 @@ import org.springframework.stereotype.Service;
 
 import static java.util.Collections.emptyList;
 
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 /**
  * Implementacao do UserDetailsService do Spring Security.
  * Carrega os detalhes do usuario do banco de dados para autenticacao.
@@ -30,10 +35,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UsuarioBean usuario = usuarioRepository.findByUsuEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado com o email: " + username));
 
+        // Adiciona uma role básica para o usuário
+        List<SimpleGrantedAuthority> authorities = Arrays.asList(
+            new SimpleGrantedAuthority("ROLE_USER")
+        );
+
         return new org.springframework.security.core.userdetails.User(
                 usuario.getUsuEmail(),
                 usuario.getUsuSenha(),
-                emptyList()
+                authorities
         );
     }
 }
