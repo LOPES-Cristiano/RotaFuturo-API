@@ -94,6 +94,11 @@
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
+        
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             <plugin>

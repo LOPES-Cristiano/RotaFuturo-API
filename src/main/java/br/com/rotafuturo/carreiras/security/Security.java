@@ -33,7 +33,7 @@ public class Security {
             // Configura as permissões de acesso
             .authorizeHttpRequests(auth -> auth
                 // Rotas de login e registo são públicas (não requerem autenticação)
-                .requestMatchers(HttpMethod.POST, "/usuario/auth/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
                 .requestMatchers(HttpMethod.GET, "/usuario/exists").permitAll()
                 // Qualquer outra requisição requer autenticação

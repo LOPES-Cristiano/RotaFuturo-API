@@ -1,14 +1,14 @@
 package br.com.rotafuturo.carreiras.dto.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data 
-@AllArgsConstructor 
-@NoArgsConstructor 
+// Removido Lombok. Getters e setters gerados manualmente.
 public class LoginRequestDTO {
     private String usuEmail;
     private String usuSenha;
 
+    public String getUsuEmail() { return usuEmail; }
+    public void setUsuEmail(String usuEmail) { this.usuEmail = usuEmail; }
+
+    public String getUsuSenha() { return usuSenha; }
+    public void setUsuSenha(String usuSenha) { this.usuSenha = usuSenha; }
 }

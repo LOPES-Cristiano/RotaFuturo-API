@@ -18,7 +18,7 @@ import br.com.rotafuturo.carreiras.security.JwtTokenProvider;
  * Controlador REST para o processo de autenticacao (login).
  */
 @RestController
-@RequestMapping("/usuario/auth")
+@RequestMapping("/login")
 public class LoginController {
 
     private final AuthenticationManager authenticationManager;
@@ -29,8 +29,7 @@ public class LoginController {
         this.jwtTokenProvider = jwtTokenProvider;
     }
 
-    @PostMapping("/login")
-    // Altere o tipo de retorno para LoginResponseDTO
+    @PostMapping("/fazer-login")
     public ResponseEntity<LoginResponseDTO> authenticateUser(@RequestBody LoginRequestDTO loginRequest) {
         
         Authentication authentication = authenticationManager.authenticate(
@@ -39,12 +38,12 @@ public class LoginController {
                 loginRequest.getUsuSenha()
             )
         );
+        
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String jwt = jwtTokenProvider.generateToken(authentication);
 
-        // Retorne um novo objeto LoginResponseDTO encapsulando o token
         return ResponseEntity.ok(new LoginResponseDTO(jwt, "Login realizado com sucesso!"));
     }
 }

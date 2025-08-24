@@ -28,7 +28,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     
     // Lista de rotas que este filtro deve ignorar
     private static final List<String> NOT_FILTERED_PATHS = Arrays.asList(
-        "/usuario/auth/login",
+        "/login/fazer-login",
         "/usuario/registrar"
     );
 
