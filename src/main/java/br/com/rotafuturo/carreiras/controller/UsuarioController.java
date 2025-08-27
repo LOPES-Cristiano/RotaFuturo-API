@@ -18,12 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.rotafuturo.carreiras.dto.usuario.UsuarioCriacaoDTO;
 import br.com.rotafuturo.carreiras.model.UsuarioBean;
 import br.com.rotafuturo.carreiras.service.UsuarioService;
-
-
-/**
- * Controlador REST para gerenciar a entidade Usuario.
- * Contem os endpoints publicos de registro e um endpoint protegido para teste.
- */
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -69,7 +63,7 @@ public class UsuarioController {
             Optional<UsuarioBean> usuBean = usuarioService.buscarUsuarioPorEmail(email);
             exists = usuBean.isPresent();
         } catch (Exception e) {
-            // FAZ PORRA NENHUMA
+            
             exists = false;
         }
     

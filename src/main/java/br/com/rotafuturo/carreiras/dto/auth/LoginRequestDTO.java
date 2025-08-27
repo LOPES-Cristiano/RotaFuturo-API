@@ -1,7 +1,6 @@
 package br.com.rotafuturo.carreiras.dto.auth;
 
 
-// Removido Lombok. Getters e setters gerados manualmente.
 public class LoginRequestDTO {
     private String usuEmail;
     private String usuSenha;

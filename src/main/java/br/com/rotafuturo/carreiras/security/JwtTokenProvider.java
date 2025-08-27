@@ -2,13 +2,13 @@ package br.com.rotafuturo.carreiras.security;
 
 import java.util.Date;
 
-import javax.crypto.SecretKey; // Continua sendo javax.crypto.SecretKey
+import javax.crypto.SecretKey; 
 
-import org.slf4j.Logger; // Continue usando Keys
-import org.slf4j.LoggerFactory; // Para o algoritmo de assinatura
+import org.slf4j.Logger; 
+import org.slf4j.LoggerFactory; 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Component; // <-- Importe para ler propriedades
+import org.springframework.stereotype.Component; 
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -17,7 +17,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException; // <-- Importe para decodificar Base64
+import io.jsonwebtoken.security.SignatureException;
 
 /**
  * Classe utilitaria para gerar, validar e extrair informacoes de tokens JWT.
@@ -27,21 +27,17 @@ public class JwtTokenProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
-    // Remove a inicialização direta aqui
-    // private final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
-    // injeta o valor da propriedade jwt.secret do application.properties
+   
     @Value("${app.jwtSecret}")
-    private String jwtSecretString; // String da chave
+    private String jwtSecretString; 
 
-    private SecretKey key; // Agora será inicializada no construtor
+    private SecretKey key; 
 
     private final long JWT_EXPIRATION_IN_MS = 86400000; // 1 dia
 
-    // Construtor para inicializar a SecretKey a partir da string
+    
     public JwtTokenProvider(@Value("${app.jwtSecret}") String jwtSecretString) {
-        // Decodifica a string Base64 da chave e a usa para criar a SecretKey
-        // Isso garante que a mesma chave seja usada a cada vez que o componente for carregado
+      
         this.key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecretString));
     }
 
@@ -54,13 +50,13 @@ public class JwtTokenProvider {
                 .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(this.key, SignatureAlgorithm.HS512) // Usa a chave persistente
+                .signWith(this.key, SignatureAlgorithm.HS512) 
                 .compact();
     }
 
     public String getUsernameFromToken(String token) {
         return Jwts.parserBuilder()
-                .setSigningKey(this.key) // Usa a chave persistente
+                .setSigningKey(this.key)
                 .build()
                 .parseClaimsJws(token)
                 .getBody()
@@ -69,7 +65,7 @@ public class JwtTokenProvider {
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(this.key).build().parseClaimsJws(token); // Usa a chave persistente
+            Jwts.parserBuilder().setSigningKey(this.key).build().parseClaimsJws(token); 
             return true;
         } catch (SignatureException ex) {
             logger.error("Assinatura JWT invalida: {}", ex.getMessage());

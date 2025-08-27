@@ -26,10 +26,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private final UserDetailsService userDetailsService;
     private static final Logger log = LoggerFactory.getLogger(JwtAuthFilter.class);
     
-    // Lista de rotas que este filtro deve ignorar
+  
     private static final List<String> NOT_FILTERED_PATHS = Arrays.asList(
-        "/login/fazer-login",
-        "/usuario/registrar"
+    "/login/fazer-login",
+    "/usuario/registrar",
+    "/api/arquivo/view"
     );
 
     public JwtAuthFilter(JwtTokenProvider tokenProvider, UserDetailsService userDetailsService) {
@@ -59,7 +60,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
         } else {
-            // Log apenas quando o token for inválido ou nulo
+          
             log.warn("Token JWT nulo ou inválido para URI: {}", request.getRequestURI());
         }
 

@@ -1,0 +1,4 @@
+2025-08-23T03:02:32.904-04:00  WARN 24444 --- [rotafuturo] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5h18m29s819ms889µs400ns).
+2025-08-23T09:24:09.051-04:00  WARN 24444 --- [rotafuturo] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6h21m36s257ms893µs200ns).
+2025-08-23T15:54:15.329-04:00  WARN 24444 --- [rotafuturo] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6h12m35s787ms540µs700ns).
+2025-08-23T20:04:53.841-04:00  WARN 24444 --- [rotafuturo] [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h10m38s649ms570µs400ns).

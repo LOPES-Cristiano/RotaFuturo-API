@@ -1,4 +1,5 @@
 package br.com.rotafuturo.carreiras.model;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,6 +13,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class UsuarioBean {
 
 	@Id

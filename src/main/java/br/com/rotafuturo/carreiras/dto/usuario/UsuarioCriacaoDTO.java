@@ -1,7 +1,6 @@
 package br.com.rotafuturo.carreiras.dto.usuario;
 
 
-// Removido Lombok. Getters e setters gerados manualmente.
 
 public class UsuarioCriacaoDTO {
     private String usuEmail;

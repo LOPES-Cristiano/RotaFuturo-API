@@ -26,16 +26,17 @@ public class Security {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
-        // Desabilita CSRF e configura CORS
+        
         http.csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
 
-            // Configura as permissões de acesso
+            
             .authorizeHttpRequests(auth -> auth
-                // Rotas de login e registo são públicas (não requerem autenticação)
+                
                 .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
                 .requestMatchers(HttpMethod.GET, "/usuario/exists").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/arquivo/view/**").permitAll()
                 // Qualquer outra requisição requer autenticação
                 .anyRequest().authenticated()
             )
@@ -49,16 +50,16 @@ public class Security {
         return http.build();
     }
     
-    // Bean que define a fonte de configuração do CORS
+ 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Sua origem frontend
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Métodos permitidos
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); // Headers permitidos
-        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(Arrays.asList("*")); 
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); 
+        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); 
+//        configuration.setAllowCredentials(false);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); // Aplica a todas as rotas
+        source.registerCorsConfiguration("/**", configuration); 
         return source;
     }
 

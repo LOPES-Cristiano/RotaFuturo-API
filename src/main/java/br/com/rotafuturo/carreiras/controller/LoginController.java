@@ -13,10 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.rotafuturo.carreiras.dto.auth.LoginRequestDTO;
 import br.com.rotafuturo.carreiras.dto.auth.LoginResponseDTO; 
 import br.com.rotafuturo.carreiras.security.JwtTokenProvider;
-
-/**
- * Controlador REST para o processo de autenticacao (login).
- */
+ 
 @RestController
 @RequestMapping("/login")
 public class LoginController {
