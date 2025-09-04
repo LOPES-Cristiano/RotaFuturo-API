@@ -26,41 +26,43 @@ public class Security {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
-        
+        // --- Configuração original comentada ---
+        // http.csrf(csrf -> csrf.disable())
+        //     .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+        //     .authorizeHttpRequests(auth -> auth
+        //         .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
+        //         .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
+        //         .requestMatchers(HttpMethod.GET, "/usuario/exists").permitAll()
+        //         .requestMatchers(HttpMethod.GET, "/api/arquivo/view/**").permitAll()
+        //         // Qualquer outra requisição requer autenticação
+        //         .anyRequest().authenticated()
+        //     )
+        //     .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        //     .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        // return http.build();
+
+        // --- Liberar todos os endpoints ---
         http.csrf(csrf -> csrf.disable())
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-
-            
             .authorizeHttpRequests(auth -> auth
-                
-                .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
-                .requestMatchers(HttpMethod.GET, "/usuario/exists").permitAll()
-                .requestMatchers(HttpMethod.GET, "/api/arquivo/view/**").permitAll()
-                // Qualquer outra requisição requer autenticação
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
-
-            // Configura a política de gestão de sessão para ser STATELESS
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            
-            // Adiciona o filtro JWT antes do filtro padrão de autenticação de nome de utilizador e palavra-passe
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
         return http.build();
     }
     
  
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*")); 
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); 
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type")); 
-//        configuration.setAllowCredentials(false);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration); 
-        return source;
+    CorsConfiguration configuration = new CorsConfiguration();
+    configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+    configuration.setAllowCredentials(true);
+    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+    source.registerCorsConfiguration("/**", configuration);
+    return source;
     }
 
     @Bean
