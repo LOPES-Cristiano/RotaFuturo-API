@@ -2,6 +2,7 @@ package br.com.rotafuturo.carreiras.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,20 +28,21 @@ public class LoginController {
     }
 
     @PostMapping("/fazer-login")
-    public ResponseEntity<LoginResponseDTO> authenticateUser(@RequestBody LoginRequestDTO loginRequest) {
-        
-        Authentication authentication = authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(
-                loginRequest.getUsuEmail(),
-                loginRequest.getUsuSenha()
-            )
-        );
-        
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        String jwt = jwtTokenProvider.generateToken(authentication);
-
-        return ResponseEntity.ok(new LoginResponseDTO(jwt, "Login realizado com sucesso!"));
+    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequestDTO loginRequest) {
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                    loginRequest.getUsuEmail(),
+                    loginRequest.getUsuSenha()
+                )
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtTokenProvider.generateToken(authentication);
+            return ResponseEntity.ok(new LoginResponseDTO(jwt, "Login realizado com sucesso!"));
+        } catch (BadCredentialsException e) {
+            return ResponseEntity.status(401).body("Usuário ou senha inválidos");
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Erro ao autenticar: " + e.getMessage());
+        }
     }
 }

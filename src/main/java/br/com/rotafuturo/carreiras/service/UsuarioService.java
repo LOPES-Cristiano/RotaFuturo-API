@@ -2,6 +2,7 @@ package br.com.rotafuturo.carreiras.service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,29 @@ import br.com.rotafuturo.carreiras.util.AppUtils;
 
 @Service
 public class UsuarioService {
+    public br.com.rotafuturo.carreiras.dto.UsuarioDTO toDTO(UsuarioBean bean) {
+        if (bean == null) return null;
+        br.com.rotafuturo.carreiras.dto.UsuarioDTO dto = new br.com.rotafuturo.carreiras.dto.UsuarioDTO();
+        dto.setUsuId(bean.getUsuId());
+        dto.setUsuEmail(bean.getUsuEmail());
+        dto.setUsuAtivo(bean.getUsuAtivo());
+        dto.setUsuDatacadastro(bean.getUsuDataCadastro());
+        dto.setUsuHoracadastro(bean.getUsuHoraCadastro());
+        // Adicione outros campos conforme necessário
+        return dto;
+    }
+
+    public UsuarioBean fromDTO(br.com.rotafuturo.carreiras.dto.UsuarioDTO dto) {
+        if (dto == null) return null;
+        UsuarioBean bean = new UsuarioBean();
+        bean.setUsuId(dto.getUsuId());
+        bean.setUsuEmail(dto.getUsuEmail());
+        bean.setUsuAtivo(dto.getUsuAtivo());
+        bean.setUsuDataCadastro(dto.getUsuDatacadastro());
+        bean.setUsuHoraCadastro(dto.getUsuHoracadastro());
+        // Adicione outros campos conforme necessário
+        return bean;
+    }
 
     private final UsuarioRepository usuarioRepository;
     private final PasswordEncoder passwordEncoder;
@@ -54,5 +78,37 @@ public class UsuarioService {
 
     public Optional<UsuarioBean> buscarUsuarioPorEmail(String email) {
         return usuarioRepository.findByUsuEmail(email);
+    }
+
+    public List<UsuarioBean> listarTodos() {
+        return usuarioRepository.findAll();
+    }
+
+    public UsuarioBean atualizarUsuario(Integer id, UsuarioBean usuario) {
+        Optional<UsuarioBean> existenteOpt = usuarioRepository.findById(id);
+        if (existenteOpt.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado");
+        }
+        UsuarioBean existente = existenteOpt.get();
+        // Atualize os campos necessários
+        existente.setUsuEmail(usuario.getUsuEmail());
+        if (usuario.getUsuSenha() != null && !usuario.getUsuSenha().isEmpty()) {
+            existente.setUsuSenha(passwordEncoder.encode(usuario.getUsuSenha()));
+        }
+        existente.setUsuAtivo(usuario.getUsuAtivo());
+        existente.setUsuEmailValidado(usuario.getUsuEmailValidado());
+        existente.setUsuTrocaSenha(usuario.getUsuTrocaSenha());
+        // Adicione outros campos se necessário
+        return usuarioRepository.save(existente);
+    }
+
+    public UsuarioBean inativarUsuario(Integer id) {
+        Optional<UsuarioBean> existenteOpt = usuarioRepository.findById(id);
+        if (existenteOpt.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado");
+        }
+        UsuarioBean existente = existenteOpt.get();
+        existente.setUsuAtivo(false);
+        return usuarioRepository.save(existente);
     }
 }

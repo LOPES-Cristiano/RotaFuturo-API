@@ -28,9 +28,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     
   
     private static final List<String> NOT_FILTERED_PATHS = Arrays.asList(
-    "/login/fazer-login",
-    "/usuario/registrar",
-    "/api/arquivo/view"
+        "/login/fazer-login",
+        "/usuario/registrar",
+        "/api/arquivo/view",
+        "/api/arquivo/view/",
+        "/api/arquivo/view"
     );
 
     public JwtAuthFilter(JwtTokenProvider tokenProvider, UserDetailsService userDetailsService) {
@@ -69,7 +71,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return NOT_FILTERED_PATHS.stream().anyMatch(path -> request.getRequestURI().startsWith(path));
+        String uri = request.getRequestURI();
+        // Permitir também requisições OPTIONS (CORS)
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) return true;
+        return NOT_FILTERED_PATHS.stream().anyMatch(path -> uri.startsWith(path));
     }
 
     private String extractJwtFromRequest(HttpServletRequest request) {
