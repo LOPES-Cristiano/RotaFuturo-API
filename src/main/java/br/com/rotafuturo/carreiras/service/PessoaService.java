@@ -6,24 +6,23 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import br.com.rotafuturo.carreiras.dto.PessoaDTO;
 import br.com.rotafuturo.carreiras.model.PessoaBean;
 import br.com.rotafuturo.carreiras.model.UsuarioBean;
 import br.com.rotafuturo.carreiras.repository.PessoaRepository;
 
 @Service
 public class PessoaService {
-    public br.com.rotafuturo.carreiras.dto.PessoaDTO toDTO(PessoaBean bean) {
+    public PessoaDTO toDTO(PessoaBean bean) {
         if (bean == null) return null;
-        br.com.rotafuturo.carreiras.dto.PessoaDTO dto = new br.com.rotafuturo.carreiras.dto.PessoaDTO();
+        PessoaDTO dto = new PessoaDTO();
         dto.setPesId(bean.getPesId());
         dto.setPesNome(bean.getPesNome());
-        dto.setPesCpf(bean.getPesTelefone1()); // Ajuste conforme o campo correto
+        dto.setPesCpf(bean.getPesTelefone1()); 
         dto.setPesAtivo(bean.getPesAtivo());
         dto.setPesDatacadastro(bean.getPesDatacadastro());
         dto.setPesHoracadastro(bean.getPesHoracadastro());
         if (bean.getUsuario() != null) dto.setUsuId(bean.getUsuario().getUsuId());
-        // Adicione outros campos conforme necessário
         return dto;
     }
 
@@ -32,11 +31,10 @@ public class PessoaService {
         PessoaBean bean = new PessoaBean();
         bean.setPesId(dto.getPesId());
         bean.setPesNome(dto.getPesNome());
-        bean.setPesTelefone1(dto.getPesCpf()); // Ajuste conforme o campo correto
+        bean.setPesTelefone1(dto.getPesCpf()); 
         bean.setPesAtivo(dto.getPesAtivo());
         bean.setPesDatacadastro(dto.getPesDatacadastro());
         bean.setPesHoracadastro(dto.getPesHoracadastro());
-        // Adicione outros campos conforme necessário
         return bean;
     }
     private final PessoaRepository pessoaRepository;

@@ -6,10 +6,13 @@ import java.time.LocalTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -19,53 +22,55 @@ import jakarta.persistence.Table;
 public class PessoaBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@jakarta.persistence.Column(name = "PES_ID")
+	@Column(name = "PES_ID")
 	private Integer pesId;
-	@jakarta.persistence.Column(name = "PES_ATIVO")
+	@Column(name = "PES_ATIVO")
 	private Boolean pesAtivo = true;
-public Boolean getPesAtivo() {
-	return pesAtivo;
-}
-public void setPesAtivo(Boolean pesAtivo) {
-	this.pesAtivo = pesAtivo;
-}
 
-	@jakarta.persistence.Column(name = "PES_NOME")
+	public Boolean getPesAtivo() {
+		return pesAtivo;
+	}
+
+	public void setPesAtivo(Boolean pesAtivo) {
+		this.pesAtivo = pesAtivo;
+	}
+
+	@Column(name = "PES_NOME")
 	private String pesNome;
 
-	@jakarta.persistence.Column(name = "PES_APELIDO")
+	@Column(name = "PES_APELIDO")
 	private String pesApelido;
 
-	@jakarta.persistence.Column(name = "PES_DATACADASTRO")
+	@Column(name = "PES_DATACADASTRO")
 	private LocalDate pesDatacadastro;
 
-	@jakarta.persistence.Column(name = "PES_HORACADASTRO")
+	@Column(name = "PES_HORACADASTRO")
 	private LocalTime pesHoracadastro;
 
-	@jakarta.persistence.Column(name = "PES_DATANASCIMENTO")
+	@Column(name = "PES_DATANASCIMENTO")
 	private LocalDate pesDatanascimento;
 
-	@jakarta.persistence.Column(name = "PES_TELEFONE1")
+	@Column(name = "PES_TELEFONE1")
 	private String pesTelefone1;
 
-	@jakarta.persistence.Column(name = "PES_TELEFONE2")
+	@Column(name = "PES_TELEFONE2")
 	private String pesTelefone2;
 
-	@jakarta.persistence.Column(name = "PES_IMAGEMPERFIL")
+	@Column(name = "PES_IMAGEMPERFIL")
 	private String pesImagemperfil;
 
-	@jakarta.persistence.Column(name = "PES_IMAGEMCURRICULO")
+	@Column(name = "PES_IMAGEMCURRICULO")
 	private String pesImagemcurriculo;
 
-	@jakarta.persistence.Column(name = "PES_NIVEL")
+	@Column(name = "PES_NIVEL")
 	private Integer pesNivel;
 
-	@jakarta.persistence.Column(name = "PES_XP")
+	@Column(name = "PES_XP")
 	private Integer pesXp;
 
-	@ManyToOne(fetch = jakarta.persistence.FetchType.LAZY)
-	@jakarta.persistence.JoinColumn(name = "USU_ID")
-	@com.fasterxml.jackson.annotation.JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "USU_ID")
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private UsuarioBean usuario;
 
 	public Integer getPesId() {
