@@ -23,7 +23,7 @@ public class AreaSubService {
         AreaSubBean bean = new AreaSubBean();
         bean.setAreasId(dto.getAreasId());
         bean.setAreasDescricao(dto.getAreasDescricao());
-        bean.setAreasAtivo(dto.getAreasAtivo());
+        bean.setAreasAtivo(true);
         bean.setAreasDatacadastro(dto.getAreasDatacadastro());
         bean.setAreasHoracadastro(dto.getAreasHoracadastro());
         // AreaBean reference should be set in the controller/service using areaId

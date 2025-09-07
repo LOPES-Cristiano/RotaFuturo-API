@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.rotafuturo.carreiras.model.AreaSubBean;
 import br.com.rotafuturo.carreiras.repository.AreaSubRepository;
+import br.com.rotafuturo.carreiras.repository.AreaRepository;
 
 @RestController
 @RequestMapping("/areasub")
@@ -32,6 +33,8 @@ public class AreaSubController {
     private AreaSubRepository areaSubRepository;
     @Autowired
     private br.com.rotafuturo.carreiras.service.AreaSubService areaSubService;
+    @Autowired
+    private AreaRepository areaRepository;
 
     @GetMapping
     public List<br.com.rotafuturo.carreiras.dto.AreaSubDTO> getAll() {
@@ -49,18 +52,29 @@ public class AreaSubController {
         AreaSubBean areaSub = areaSubService.fromDTO(areaSubDTO);
         areaSub.setAreasDatacadastro(java.time.LocalDate.now());
         areaSub.setAreasHoracadastro(java.time.LocalTime.now());
+        if (areaSubDTO.getAreaId() != null) {
+            areaRepository.findById(areaSubDTO.getAreaId()).ifPresent(areaSub::setArea);
+        }
         AreaSubBean saved = areaSubRepository.save(areaSub);
         return new ResponseEntity<>(areaSubService.toDTO(saved), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<br.com.rotafuturo.carreiras.dto.AreaSubDTO> update(@PathVariable Integer id, @RequestBody br.com.rotafuturo.carreiras.dto.AreaSubDTO areaSubDTO) {
-        if (!areaSubRepository.existsById(id)) {
+        java.util.Optional<AreaSubBean> existingOpt = areaSubRepository.findById(id);
+        if (existingOpt.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        AreaSubBean areaSub = areaSubService.fromDTO(areaSubDTO);
-        areaSub.setAreasId(id);
-        AreaSubBean updated = areaSubRepository.save(areaSub);
+        AreaSubBean existing = existingOpt.get();
+        // Atualiza apenas os campos editáveis
+        existing.setAreasDescricao(areaSubDTO.getAreasDescricao());
+        if (areaSubDTO.getAreaId() != null) {
+            areaRepository.findById(areaSubDTO.getAreaId()).ifPresent(existing::setArea);
+        }
+        if (areaSubDTO.getAreasAtivo() != null) {
+            existing.setAreasAtivo(areaSubDTO.getAreasAtivo());
+        }
+        AreaSubBean updated = areaSubRepository.save(existing);
         return ResponseEntity.ok(areaSubService.toDTO(updated));
     }
 

@@ -22,7 +22,7 @@ public class AreaService {
         AreaBean bean = new AreaBean();
         bean.setAreaId(dto.getAreaId());
         bean.setAreaDescricao(dto.getAreaDescricao());
-        bean.setAreaAtivo(dto.getAreaAtivo());
+        bean.setAreaAtivo(true);
         bean.setAreaDatacadastro(dto.getAreaDatacadastro());
         bean.setAreaHoracadastro(dto.getAreaHoracadastro());
         return bean;
