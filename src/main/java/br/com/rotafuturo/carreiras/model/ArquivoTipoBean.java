@@ -15,12 +15,14 @@ public class ArquivoTipoBean {
 	private Integer arqtId;
 	@jakarta.persistence.Column(name = "ARQT_ATIVO")
 	private Boolean arqtAtivo = true;
-public Boolean getArqtAtivo() {
-	return arqtAtivo;
-}
-public void setArqtAtivo(Boolean arqtAtivo) {
-	this.arqtAtivo = arqtAtivo;
-}
+
+	public Boolean getArqtAtivo() {
+		return arqtAtivo;
+	}
+
+	public void setArqtAtivo(Boolean arqtAtivo) {
+		this.arqtAtivo = arqtAtivo;
+	}
 
 	@jakarta.persistence.Column(name = "ARQT_DESCRICAO")
 	private String arqtDescricao;

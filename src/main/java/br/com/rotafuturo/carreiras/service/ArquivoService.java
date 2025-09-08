@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ArquivoService {
-    @Autowired
-    private ArquivoRepository arquivoRepository;
+	@Autowired
+	private ArquivoRepository arquivoRepository;
 
-    public ArquivoBean salvar(ArquivoBean arquivo) {
-        return arquivoRepository.save(arquivo);
-    }
+	public ArquivoBean salvar(ArquivoBean arquivo) {
+		return arquivoRepository.save(arquivo);
+	}
 }

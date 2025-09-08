@@ -41,8 +41,7 @@ public class AreaController {
 	}
 
 	@PostMapping
-	public ResponseEntity<AreaDTO> create(
-			@RequestBody AreaDTO areaDTO) {
+	public ResponseEntity<AreaDTO> create(@RequestBody AreaDTO areaDTO) {
 		AreaBean area = areaService.fromDTO(areaDTO);
 		area.setAreaDatacadastro(java.time.LocalDate.now());
 		area.setAreaHoracadastro(java.time.LocalTime.now());
@@ -51,8 +50,7 @@ public class AreaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<AreaDTO> update(@PathVariable Integer id,
-			@RequestBody AreaDTO areaDTO) {
+	public ResponseEntity<AreaDTO> update(@PathVariable Integer id, @RequestBody AreaDTO areaDTO) {
 		Optional<AreaBean> areaOpt = areaRepository.findById(id);
 		if (areaOpt.isEmpty()) {
 			return ResponseEntity.notFound().build();
@@ -63,7 +61,7 @@ public class AreaController {
 		if (areaDTO.getAreaAtivo() != null) {
 			area.setAreaAtivo(areaDTO.getAreaAtivo());
 		}
-		
+
 		AreaBean updated = areaRepository.save(area);
 		return ResponseEntity.ok(areaService.toDTO(updated));
 	}

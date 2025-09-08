@@ -1,6 +1,5 @@
 package br.com.rotafuturo.carreiras.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,6 +35,7 @@ public class QuestionarioQuestaoBean {
 	public Boolean getQuestqAtivo() {
 		return questqAtivo;
 	}
+
 	public void setQuestqAtivo(Boolean questqAtivo) {
 		this.questqAtivo = questqAtivo;
 	}

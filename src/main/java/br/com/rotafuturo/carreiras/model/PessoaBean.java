@@ -61,6 +61,7 @@ public class PessoaBean {
 
 	@Column(name = "PES_IMAGEMCAPAPERFIL")
 	private String pesImagemCapaPerfil;
+
 	public String getPesImagemCapaPerfil() {
 		return pesImagemCapaPerfil;
 	}
@@ -186,18 +187,15 @@ public class PessoaBean {
 	public void setUsuario(UsuarioBean usuario) {
 		this.usuario = usuario;
 	}
+
 	@Override
 	public String toString() {
-		return "PessoaBean{" +
-				"pesId=" + pesId +
-				", pesNome='" + pesNome + '\'' +
-				", pesApelido='" + pesApelido + '\'' +
-				", pesTelefone1='" + pesTelefone1 + '\'' +
-				", pesImagemperfil='" + (pesImagemperfil != null ? pesImagemperfil.substring(0, Math.min(30, pesImagemperfil.length())) + "..." : null) + '\'' +
-				", pesAtivo=" + pesAtivo +
-				", pesDatacadastro=" + pesDatacadastro +
-				", pesHoracadastro=" + pesHoracadastro +
-				", usuario=" + (usuario != null ? usuario.getUsuId() : null) +
-				'}';
+		return "PessoaBean{" + "pesId=" + pesId + ", pesNome='" + pesNome + '\'' + ", pesApelido='" + pesApelido + '\''
+				+ ", pesTelefone1='" + pesTelefone1 + '\'' + ", pesImagemperfil='"
+				+ (pesImagemperfil != null
+						? pesImagemperfil.substring(0, Math.min(30, pesImagemperfil.length())) + "..."
+						: null)
+				+ '\'' + ", pesAtivo=" + pesAtivo + ", pesDatacadastro=" + pesDatacadastro + ", pesHoracadastro="
+				+ pesHoracadastro + ", usuario=" + (usuario != null ? usuario.getUsuId() : null) + '}';
 	}
 }

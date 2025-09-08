@@ -22,66 +22,55 @@ import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final JwtTokenProvider tokenProvider;
-    private final UserDetailsService userDetailsService;
-    private static final Logger log = LoggerFactory.getLogger(JwtAuthFilter.class);
-    
-  
-    private static final List<String> NOT_FILTERED_PATHS = Arrays.asList(
-        "/login/fazer-login",
-        "/usuario/registrar",
-        "/api/arquivo/view",
-        "/api/arquivo/view/",
-        "/api/arquivo/view"
-    );
+	private final JwtTokenProvider tokenProvider;
+	private final UserDetailsService userDetailsService;
+	private static final Logger log = LoggerFactory.getLogger(JwtAuthFilter.class);
 
-    public JwtAuthFilter(JwtTokenProvider tokenProvider, UserDetailsService userDetailsService) {
-        this.tokenProvider = tokenProvider;
-        this.userDetailsService = userDetailsService;
-    }
+	private static final List<String> NOT_FILTERED_PATHS = Arrays.asList("/login/fazer-login", "/usuario/registrar",
+			"/api/arquivo/view", "/api/arquivo/view/", "/api/arquivo/view");
 
-    @Override
-    protected void doFilterInternal(
-            HttpServletRequest request,
-            HttpServletResponse response,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
+	public JwtAuthFilter(JwtTokenProvider tokenProvider, UserDetailsService userDetailsService) {
+		this.tokenProvider = tokenProvider;
+		this.userDetailsService = userDetailsService;
+	}
 
-        String jwt = extractJwtFromRequest(request);
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
 
-        if (jwt != null && tokenProvider.validateToken(jwt)) {
-            String username = tokenProvider.getUsernameFromToken(jwt);
-            UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+		String jwt = extractJwtFromRequest(request);
 
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    userDetails,
-                    null,
-                    userDetails.getAuthorities()
-            );
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+		if (jwt != null && tokenProvider.validateToken(jwt)) {
+			String username = tokenProvider.getUsernameFromToken(jwt);
+			UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-        } else {
-          
-            log.warn("Token JWT nulo ou inválido para URI: {}", request.getRequestURI());
-        }
+			UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
+					null, userDetails.getAuthorities());
+			authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+			SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        filterChain.doFilter(request, response);
-    }
+		} else {
 
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) {
-        String uri = request.getRequestURI();
-        // Permitir também requisições OPTIONS (CORS)
-        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) return true;
-        return NOT_FILTERED_PATHS.stream().anyMatch(path -> uri.startsWith(path));
-    }
+			log.warn("Token JWT nulo ou inválido para URI: {}", request.getRequestURI());
+		}
 
-    private String extractJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
-        }
-        return null;
-    }
+		filterChain.doFilter(request, response);
+	}
+
+	@Override
+	protected boolean shouldNotFilter(HttpServletRequest request) {
+		String uri = request.getRequestURI();
+		// Permitir também requisições OPTIONS (CORS)
+		if ("OPTIONS".equalsIgnoreCase(request.getMethod()))
+			return true;
+		return NOT_FILTERED_PATHS.stream().anyMatch(path -> uri.startsWith(path));
+	}
+
+	private String extractJwtFromRequest(HttpServletRequest request) {
+		String bearerToken = request.getHeader("Authorization");
+		if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+			return bearerToken.substring(7);
+		}
+		return null;
+	}
 }

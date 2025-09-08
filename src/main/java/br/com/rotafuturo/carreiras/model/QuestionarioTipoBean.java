@@ -24,6 +24,7 @@ public class QuestionarioTipoBean {
 	public Boolean getQuestAtivo() {
 		return questAtivo;
 	}
+
 	public void setQuestAtivo(Boolean questAtivo) {
 		this.questAtivo = questAtivo;
 	}

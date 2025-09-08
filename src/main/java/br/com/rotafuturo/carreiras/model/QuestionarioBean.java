@@ -24,6 +24,7 @@ public class QuestionarioBean {
 	public void setQuesAtivo(Boolean quesAtivo) {
 		this.quesAtivo = quesAtivo;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@jakarta.persistence.Column(name = "QUES_ID")

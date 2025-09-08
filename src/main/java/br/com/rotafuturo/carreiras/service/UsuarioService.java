@@ -26,9 +26,10 @@ public class UsuarioService {
 		dto.setUsuId(bean.getUsuId());
 		dto.setUsuEmail(bean.getUsuEmail());
 		dto.setUsuAtivo(bean.getUsuAtivo());
+		dto.setUsuEmailValidado(bean.getUsuEmailValidado());
+		dto.setUsuTrocaSenha(bean.getUsuTrocaSenha());
 		dto.setUsuDatacadastro(bean.getUsuDataCadastro());
 		dto.setUsuHoracadastro(bean.getUsuHoraCadastro());
-		// Adicione outros campos conforme necessário
 		return dto;
 	}
 
@@ -39,9 +40,10 @@ public class UsuarioService {
 		bean.setUsuId(dto.getUsuId());
 		bean.setUsuEmail(dto.getUsuEmail());
 		bean.setUsuAtivo(dto.getUsuAtivo());
+		bean.setUsuEmailValidado(dto.getUsuEmailValidado());
+		bean.setUsuTrocaSenha(dto.getUsuTrocaSenha());
 		bean.setUsuDataCadastro(dto.getUsuDatacadastro());
 		bean.setUsuHoraCadastro(dto.getUsuHoracadastro());
-		// Adicione outros campos conforme necessário
 		return bean;
 	}
 

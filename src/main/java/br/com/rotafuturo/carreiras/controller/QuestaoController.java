@@ -20,56 +20,57 @@ import br.com.rotafuturo.carreiras.repository.QuestaoRepository;
 @RestController
 @RequestMapping("/questao")
 public class QuestaoController {
-    @Autowired
-    private QuestaoRepository questaoRepository;
-    @Autowired
-    private br.com.rotafuturo.carreiras.service.QuestaoService questaoService;
+	@Autowired
+	private QuestaoRepository questaoRepository;
+	@Autowired
+	private br.com.rotafuturo.carreiras.service.QuestaoService questaoService;
 
-    @GetMapping
-    public List<br.com.rotafuturo.carreiras.dto.QuestaoDTO> getAll() {
-        return questaoRepository.findAll().stream().map(questaoService::toDTO).toList();
-    }
+	@GetMapping
+	public List<br.com.rotafuturo.carreiras.dto.QuestaoDTO> getAll() {
+		return questaoRepository.findAll().stream().map(questaoService::toDTO).toList();
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> getById(@PathVariable Integer id) {
-        return questaoRepository.findById(id)
-            .map(q -> ResponseEntity.ok(questaoService.toDTO(q)))
-            .orElseGet(() -> ResponseEntity.notFound().build());
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> getById(@PathVariable Integer id) {
+		return questaoRepository.findById(id).map(q -> ResponseEntity.ok(questaoService.toDTO(q)))
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
 
-    @PostMapping
-    public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> create(@RequestBody br.com.rotafuturo.carreiras.dto.QuestaoDTO questaoDTO) {
-    QuestaoBean questao = questaoService.fromDTO(questaoDTO);
-    questao.setQuestaoDatacadastro(java.time.LocalDate.now());
-    questao.setQuestaoHoracadastro(java.time.LocalTime.now());
-    // Garante que a questão será criada como ativa
-    questao.setQuestaoAtivo(true);
-    // Os campos questaoCodigo e questaoDescricao já são setados via fromDTO
-    QuestaoBean saved = questaoRepository.save(questao);
-    return new ResponseEntity<>(questaoService.toDTO(saved), HttpStatus.CREATED);
-    }
+	@PostMapping
+	public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> create(
+			@RequestBody br.com.rotafuturo.carreiras.dto.QuestaoDTO questaoDTO) {
+		QuestaoBean questao = questaoService.fromDTO(questaoDTO);
+		questao.setQuestaoDatacadastro(java.time.LocalDate.now());
+		questao.setQuestaoHoracadastro(java.time.LocalTime.now());
+		// Garante que a questão será criada como ativa
+		questao.setQuestaoAtivo(true);
+		// Os campos questaoCodigo e questaoDescricao já são setados via fromDTO
+		QuestaoBean saved = questaoRepository.save(questao);
+		return new ResponseEntity<>(questaoService.toDTO(saved), HttpStatus.CREATED);
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> update(@PathVariable Integer id, @RequestBody br.com.rotafuturo.carreiras.dto.QuestaoDTO questaoDTO) {
-        if (!questaoRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        QuestaoBean questao = questaoService.fromDTO(questaoDTO);
-        questao.setQuestaoId(id);
-        // Os campos questaoCodigo e questaoDescricao já são setados via fromDTO
-        QuestaoBean updated = questaoRepository.save(questao);
-        return ResponseEntity.ok(questaoService.toDTO(updated));
-    }
+	@PutMapping("/{id}")
+	public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> update(@PathVariable Integer id,
+			@RequestBody br.com.rotafuturo.carreiras.dto.QuestaoDTO questaoDTO) {
+		if (!questaoRepository.existsById(id)) {
+			return ResponseEntity.notFound().build();
+		}
+		QuestaoBean questao = questaoService.fromDTO(questaoDTO);
+		questao.setQuestaoId(id);
+		// Os campos questaoCodigo e questaoDescricao já são setados via fromDTO
+		QuestaoBean updated = questaoRepository.save(questao);
+		return ResponseEntity.ok(questaoService.toDTO(updated));
+	}
 
-    @PatchMapping("/{id}/inativar")
-    public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> inativar(@PathVariable Integer id) {
-        java.util.Optional<QuestaoBean> questaoOpt = questaoRepository.findById(id);
-        if (questaoOpt.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        QuestaoBean questao = questaoOpt.get();
-        questao.setQuestaoAtivo(false);
-        QuestaoBean atualizado = questaoRepository.save(questao);
-        return ResponseEntity.ok(questaoService.toDTO(atualizado));
-    }
+	@PatchMapping("/{id}/inativar")
+	public ResponseEntity<br.com.rotafuturo.carreiras.dto.QuestaoDTO> inativar(@PathVariable Integer id) {
+		java.util.Optional<QuestaoBean> questaoOpt = questaoRepository.findById(id);
+		if (questaoOpt.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		QuestaoBean questao = questaoOpt.get();
+		questao.setQuestaoAtivo(false);
+		QuestaoBean atualizado = questaoRepository.save(questao);
+		return ResponseEntity.ok(questaoService.toDTO(atualizado));
+	}
 }

@@ -22,6 +22,7 @@ public class AreaBean {
 	public void setAreaAtivo(Boolean areaAtivo) {
 		this.areaAtivo = areaAtivo;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@jakarta.persistence.Column(name = "AREA_ID")

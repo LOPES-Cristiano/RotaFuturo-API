@@ -24,6 +24,7 @@ public class CursoBean {
 	public void setCurAtivo(Boolean curAtivo) {
 		this.curAtivo = curAtivo;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@jakarta.persistence.Column(name = "CUR_ID")

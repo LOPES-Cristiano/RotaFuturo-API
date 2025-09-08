@@ -51,12 +51,9 @@ public class PessoaService {
 		bean.setPesHoracadastro(dto.getPesHoracadastro());
 		return bean;
 	}
-	
+
 	public List<PessoaDTO> listarTodasDTO() {
-	    return pessoaRepository.findAll()
-	        .stream()
-	        .map(this::toDTO)
-	        .collect(Collectors.toList());
+		return pessoaRepository.findAll().stream().map(this::toDTO).collect(Collectors.toList());
 	}
 
 	private final PessoaRepository pessoaRepository;

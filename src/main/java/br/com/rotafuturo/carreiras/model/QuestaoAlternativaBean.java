@@ -1,5 +1,6 @@
 
 package br.com.rotafuturo.carreiras.model;
+
 import jakarta.persistence.ManyToOne;
 
 import jakarta.persistence.Entity;
@@ -32,6 +33,7 @@ public class QuestaoAlternativaBean {
 	public Boolean getQuesaAtivo() {
 		return quesaAtivo;
 	}
+
 	public void setQuesaAtivo(Boolean quesaAtivo) {
 		this.quesaAtivo = quesaAtivo;
 	}

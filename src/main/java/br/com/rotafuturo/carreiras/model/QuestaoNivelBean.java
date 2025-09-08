@@ -20,6 +20,7 @@ public class QuestaoNivelBean {
 	public Boolean getQuesnAtivo() {
 		return quesnAtivo;
 	}
+
 	public void setQuesnAtivo(Boolean quesnAtivo) {
 		this.quesnAtivo = quesnAtivo;
 	}

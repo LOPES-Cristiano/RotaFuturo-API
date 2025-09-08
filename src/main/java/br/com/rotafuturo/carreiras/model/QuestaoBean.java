@@ -23,15 +23,19 @@ public class QuestaoBean {
 	public String getQuestaoCodigo() {
 		return questaoCodigo;
 	}
+
 	public void setQuestaoCodigo(String questaoCodigo) {
 		this.questaoCodigo = questaoCodigo;
 	}
+
 	public String getQuestaoDescricao() {
 		return questaoDescricao;
 	}
+
 	public void setQuestaoDescricao(String questaoDescricao) {
 		this.questaoDescricao = questaoDescricao;
 	}
+
 	@jakarta.persistence.Column(name = "QUESTAO_ATIVO")
 	private Boolean questaoAtivo = true;
 
@@ -42,6 +46,7 @@ public class QuestaoBean {
 	public void setQuestaoAtivo(Boolean questaoAtivo) {
 		this.questaoAtivo = questaoAtivo;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@jakarta.persistence.Column(name = "QUESTAO_ID")

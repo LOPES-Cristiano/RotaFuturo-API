@@ -24,6 +24,7 @@ public class AreaSubBean {
 	public void setAreasAtivo(Boolean areasAtivo) {
 		this.areasAtivo = areasAtivo;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@jakarta.persistence.Column(name = "AREAS_ID")

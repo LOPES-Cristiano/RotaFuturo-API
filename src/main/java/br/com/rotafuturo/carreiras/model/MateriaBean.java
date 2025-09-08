@@ -24,6 +24,7 @@ public class MateriaBean {
 	public void setMatAtivo(Boolean matAtivo) {
 		this.matAtivo = matAtivo;
 	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@jakarta.persistence.Column(name = "MAT_ID")

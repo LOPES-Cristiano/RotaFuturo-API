@@ -107,22 +107,22 @@ public class PessoaController {
 	@PutMapping("/{id}")
 	public ResponseEntity<PessoaDTO> updatePessoa(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
 		Optional<PessoaBean> pessoaOpt = pessoaService.getPessoaById(id);
-		
+
 		if (pessoaOpt.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-		
+
 		PessoaBean pessoa = pessoaService.fromDTO(pessoaDTO);
-		
+
 		pessoa.setPesId(id);
-		
+
 		if (pessoa.getUsuario() == null) {
 			pessoa.setUsuario(pessoaOpt.get().getUsuario());
 		}
-		
+
 		pessoa.setPesDatacadastro(pessoaOpt.get().getPesDatacadastro());
 		pessoa.setPesHoracadastro(pessoaOpt.get().getPesHoracadastro());
-		
+
 		if (pessoa.getPesAtivo() == null) {
 			pessoa.setPesAtivo(true);
 		}
@@ -180,9 +180,9 @@ public class PessoaController {
 		pessoaService.deletePessoa(id);
 		return ResponseEntity.noContent().build();
 	}
-	
+
 	@GetMapping
 	public List<PessoaDTO> listarTodasPessoas() {
-	    return pessoaService.listarTodasDTO();
+		return pessoaService.listarTodasDTO();
 	}
 }

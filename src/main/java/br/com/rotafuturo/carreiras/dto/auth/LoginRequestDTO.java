@@ -1,13 +1,22 @@
 package br.com.rotafuturo.carreiras.dto.auth;
 
-
 public class LoginRequestDTO {
-    private String usuEmail;
-    private String usuSenha;
+	private String usuEmail;
+	private String usuSenha;
 
-    public String getUsuEmail() { return usuEmail; }
-    public void setUsuEmail(String usuEmail) { this.usuEmail = usuEmail; }
+	public String getUsuEmail() {
+		return usuEmail;
+	}
 
-    public String getUsuSenha() { return usuSenha; }
-    public void setUsuSenha(String usuSenha) { this.usuSenha = usuSenha; }
+	public void setUsuEmail(String usuEmail) {
+		this.usuEmail = usuEmail;
+	}
+
+	public String getUsuSenha() {
+		return usuSenha;
+	}
+
+	public void setUsuSenha(String usuSenha) {
+		this.usuSenha = usuSenha;
+	}
 }

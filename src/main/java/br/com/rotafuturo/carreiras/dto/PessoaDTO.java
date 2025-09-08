@@ -16,6 +16,7 @@ public class PessoaDTO {
 	private LocalDate pesDatacadastro;
 	private LocalTime pesHoracadastro;
 	private Integer usuId;
+
 	public String getPesImagemCapaPerfil() {
 		return pesImagemCapaPerfil;
 	}
@@ -23,13 +24,14 @@ public class PessoaDTO {
 	public void setPesImagemCapaPerfil(String pesImagemCapaPerfil) {
 		this.pesImagemCapaPerfil = pesImagemCapaPerfil;
 	}
-       public LocalDate getPesDatanascimento() {
-	       return pesDatanascimento;
-       }
 
-       public void setPesDatanascimento(LocalDate pesDatanascimento) {
-	       this.pesDatanascimento = pesDatanascimento;
-       }
+	public LocalDate getPesDatanascimento() {
+		return pesDatanascimento;
+	}
+
+	public void setPesDatanascimento(LocalDate pesDatanascimento) {
+		this.pesDatanascimento = pesDatanascimento;
+	}
 
 	public Integer getPesId() {
 		return pesId;
@@ -47,38 +49,37 @@ public class PessoaDTO {
 		this.pesNome = pesNome;
 	}
 
+	public String getPesApelido() {
+		return pesApelido;
+	}
 
-       public String getPesApelido() {
-	       return pesApelido;
-       }
+	public void setPesApelido(String pesApelido) {
+		this.pesApelido = pesApelido;
+	}
 
-       public void setPesApelido(String pesApelido) {
-	       this.pesApelido = pesApelido;
-       }
+	public String getPesCpf() {
+		return pesCpf;
+	}
 
-       public String getPesCpf() {
-	       return pesCpf;
-       }
+	public void setPesCpf(String pesCpf) {
+		this.pesCpf = pesCpf;
+	}
 
-       public void setPesCpf(String pesCpf) {
-	       this.pesCpf = pesCpf;
-       }
+	public String getPesTelefone1() {
+		return pesTelefone1;
+	}
 
-       public String getPesTelefone1() {
-	       return pesTelefone1;
-       }
+	public void setPesTelefone1(String pesTelefone1) {
+		this.pesTelefone1 = pesTelefone1;
+	}
 
-       public void setPesTelefone1(String pesTelefone1) {
-	       this.pesTelefone1 = pesTelefone1;
-       }
+	public String getPesImagemperfil() {
+		return pesImagemperfil;
+	}
 
-       public String getPesImagemperfil() {
-	       return pesImagemperfil;
-       }
-
-       public void setPesImagemperfil(String pesImagemperfil) {
-	       this.pesImagemperfil = pesImagemperfil;
-       }
+	public void setPesImagemperfil(String pesImagemperfil) {
+		this.pesImagemperfil = pesImagemperfil;
+	}
 
 	public Boolean getPesAtivo() {
 		return pesAtivo;
