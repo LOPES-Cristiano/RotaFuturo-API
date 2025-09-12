@@ -26,23 +26,7 @@ public class Security {
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
-		// --- Configuração original comentada ---
-		// http.csrf(csrf -> csrf.disable())
-		// .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-		// .authorizeHttpRequests(auth -> auth
-		// .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
-		// .requestMatchers(HttpMethod.POST, "/usuario/registrar").permitAll()
-		// .requestMatchers(HttpMethod.GET, "/usuario/exists").permitAll()
-		// .requestMatchers(HttpMethod.GET, "/api/arquivo/view/**").permitAll()
-		// // Qualquer outra requisição requer autenticação
-		// .anyRequest().authenticated()
-		// )
-		// .sessionManagement(session ->
-		// session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-		// .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-		// return http.build();
 
-		// --- Liberar todos os endpoints ---
 		http.csrf(csrf -> csrf.disable()).cors(cors -> cors.configurationSource(corsConfigurationSource()))
 				.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -52,16 +36,19 @@ public class Security {
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
-		configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
-		configuration.setAllowCredentials(true);
-		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", configuration);
-		return source;
-	}
+	    CorsConfiguration configuration = new CorsConfiguration();
 
+	    // permite qualquer origem com padrão (curinga) quando allowCredentials=true
+	    configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "http://168.75.70.135:3000"));
+	    
+	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+	    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+	    configuration.setAllowCredentials(true);
+	    
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);
+	    return source;
+	}
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
