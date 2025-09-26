@@ -38,8 +38,14 @@ public class Security {
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration configuration = new CorsConfiguration();
 
-	    // permite qualquer origem com padrão (curinga) quando allowCredentials=true
-	    configuration.setAllowedOriginPatterns(Arrays.asList("http://localhost:3000", "http://168.75.70.135:3000"));
+	    configuration.setAllowedOriginPatterns(
+	    	    Arrays.asList(
+	    	        "http://localhost:3000",
+	    	        "http://168.75.70.135:3000",
+	    	        "https://rotafuturo.com.br",
+	    	        "https://www.rotafuturo.com.br"
+	    	    )
+	    	);
 	    
 	    configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
 	    configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
