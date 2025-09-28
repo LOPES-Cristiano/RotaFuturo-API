@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "questionario")
+@Table(name = "QUESTIONARIO")
 public class QuestionarioBean {
 	@jakarta.persistence.Column(name = "QUES_ATIVO")
 	private Boolean quesAtivo = true;

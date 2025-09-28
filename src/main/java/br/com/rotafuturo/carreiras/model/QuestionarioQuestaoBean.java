@@ -8,7 +8,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "questionarioquestao")
+@Table(name = "QUESTIONARIOQUESTAO")
 public class QuestionarioQuestaoBean {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

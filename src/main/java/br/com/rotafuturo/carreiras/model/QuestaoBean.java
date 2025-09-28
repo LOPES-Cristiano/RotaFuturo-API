@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "questao")
+@Table(name = "QUESTAO")
 public class QuestaoBean {
 	@jakarta.persistence.Column(name = "QUESTAO_CODIGO")
 	private String questaoCodigo;

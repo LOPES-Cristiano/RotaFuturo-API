@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "area")
+@Table(name = "AREA")
 public class AreaBean {
 	@jakarta.persistence.Column(name = "AREA_ATIVO")
 	private Boolean areaAtivo = true;

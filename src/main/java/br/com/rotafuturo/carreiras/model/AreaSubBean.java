@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "areasub")
+@Table(name = "AREASUB")
 public class AreaSubBean {
 	@jakarta.persistence.Column(name = "AREAS_ATIVO")
 	private Boolean areasAtivo = true;
