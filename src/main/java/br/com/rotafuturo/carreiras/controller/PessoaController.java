@@ -52,6 +52,17 @@ public class PessoaController {
 		return pessoaOpt.map(p -> ResponseEntity.ok(pessoaService.toDTO(p)))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
+	
+	@GetMapping("/usuario/{usuarioId}")
+	public ResponseEntity<PessoaDTO> getPessoaByUsuarioId(@PathVariable Integer usuarioId) {
+		Optional<UsuarioBean> usuarioOpt = usuarioService.buscarUsuarioPorId(usuarioId);
+		if (usuarioOpt.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		Optional<PessoaBean> pessoaOpt = pessoaService.getPessoaByUsuario(usuarioOpt.get());
+		return pessoaOpt.map(p -> ResponseEntity.ok(pessoaService.toDTO(p)))
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
 
 	@PostMapping
 	public ResponseEntity<PessoaDTO> createPessoa(@RequestBody PessoaDTO pessoaDTO) {

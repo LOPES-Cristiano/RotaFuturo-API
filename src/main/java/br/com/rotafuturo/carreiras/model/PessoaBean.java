@@ -83,7 +83,7 @@ public class PessoaBean {
 	@JoinColumn(name = "USU_ID")
 	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private UsuarioBean usuario;
-
+	
 	public Integer getPesId() {
 		return pesId;
 	}
@@ -187,7 +187,7 @@ public class PessoaBean {
 	public void setUsuario(UsuarioBean usuario) {
 		this.usuario = usuario;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "PessoaBean{" + "pesId=" + pesId + ", pesNome='" + pesNome + '\'' + ", pesApelido='" + pesApelido + '\''

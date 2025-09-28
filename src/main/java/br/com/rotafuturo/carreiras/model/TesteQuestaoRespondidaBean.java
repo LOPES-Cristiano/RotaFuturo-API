@@ -36,6 +36,9 @@ public class TesteQuestaoRespondidaBean {
 
     @Column(name = "TESQR_RESPOSTA")
     private Integer tesqrResposta;
+    
+    // Campo transiente para receber o ID do vínculo do frontend
+    private transient Integer testeQuestaoVinculoId;
 
     public Integer getTesqrId() {
         return tesqrId;
@@ -83,5 +86,14 @@ public class TesteQuestaoRespondidaBean {
 
     public void setTesqrResposta(Integer tesqrResposta) {
         this.tesqrResposta = tesqrResposta;
+    }
+    
+    // Getter e setter para o campo transiente
+    public Integer getTesteQuestaoVinculoId() {
+        return testeQuestaoVinculoId;
+    }
+    
+    public void setTesteQuestaoVinculoId(Integer testeQuestaoVinculoId) {
+        this.testeQuestaoVinculoId = testeQuestaoVinculoId;
     }
 }

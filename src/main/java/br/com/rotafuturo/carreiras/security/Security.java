@@ -41,6 +41,7 @@ public class Security {
 	    configuration.setAllowedOriginPatterns(
 	    	    Arrays.asList(
 	    	        "http://localhost:3000",
+	    	        "http://192.168.2.50:3000",
 	    	        "http://168.75.70.135:3000",
 	    	        "https://rotafuturo.com.br",
 	    	        "https://www.rotafuturo.com.br"

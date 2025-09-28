@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "TESTEQUESTAO")
@@ -86,4 +87,14 @@ public class TesteQuestaoBean {
 		this.areaSub = areaSub;
 	}
 
+	@Transient
+	private String testeDescricao;
+
+	public String getTesteDescricao() {
+		return testeDescricao;
+	}
+
+	public void setTesteDescricao(String testeDescricao) {
+		this.testeDescricao = testeDescricao;
+	}
 }

@@ -2,7 +2,7 @@ package br.com.rotafuturo.carreiras.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import  org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -79,4 +79,21 @@ public class TesteController {
         // Retorna todas as questões vinculadas ao teste
         return testeService.getQuestoesByTesteId(id);
     }
+    
+    @GetMapping("/{id}/questoes/area/{areaId}")
+    public List<br.com.rotafuturo.carreiras.model.TesteQuestaoBean> getQuestoesByTesteAndArea(
+            @PathVariable Integer id, @PathVariable Integer areaId) {
+        // Retorna questões vinculadas ao teste e à área específica
+        return testeService.getQuestoesByTesteIdAndAreaId(id, areaId);
+    }
+    
+    @GetMapping("/{id}/resultado/{usuarioId}/area/{areaId}")
+    public List<br.com.rotafuturo.carreiras.dto.TesteResultadoDTO> getTesteResultadosSubareas(
+            @PathVariable Integer id, 
+            @PathVariable Integer usuarioId,
+            @PathVariable Integer areaId) {
+        // Retorna os resultados do teste de subárea para o usuário específico na área específica
+        return testeService.getTesteResultadosSubareas(id, usuarioId, areaId);
+    }
+    
 }
