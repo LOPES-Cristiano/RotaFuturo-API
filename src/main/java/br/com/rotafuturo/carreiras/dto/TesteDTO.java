@@ -1,8 +1,6 @@
 package br.com.rotafuturo.carreiras.dto;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 public class TesteDTO {
     public Integer tesId;
     public LocalDate tesDatacadastro;

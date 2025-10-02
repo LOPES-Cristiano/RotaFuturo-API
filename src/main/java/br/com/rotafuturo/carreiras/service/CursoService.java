@@ -1,22 +1,18 @@
 package br.com.rotafuturo.carreiras.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.rotafuturo.carreiras.dto.CursoDTO;
 import br.com.rotafuturo.carreiras.model.AreaBean;
 import br.com.rotafuturo.carreiras.model.AreaSubBean;
 import br.com.rotafuturo.carreiras.model.CursoBean;
 import br.com.rotafuturo.carreiras.repository.AreaRepository;
 import br.com.rotafuturo.carreiras.repository.AreaSubRepository;
-
 @Service
 public class CursoService {
 	@Autowired
 	private AreaRepository areaRepository;
 	@Autowired
 	private AreaSubRepository areaSubRepository;
-
 	public CursoDTO toDTO(CursoBean bean) {
 		if (bean == null)
 			return null;
@@ -36,7 +32,6 @@ public class CursoService {
 		}
 		return dto;
 	}
-
 	public CursoBean fromDTO(CursoDTO dto) {
 		if (dto == null)
 			return null;

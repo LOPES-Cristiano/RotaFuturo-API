@@ -1,10 +1,7 @@
 package br.com.rotafuturo.carreiras.service;
-
 import org.springframework.stereotype.Service;
-
 import br.com.rotafuturo.carreiras.dto.QuestaoDTO;
 import br.com.rotafuturo.carreiras.model.QuestaoBean;
-
 @Service
 public class QuestaoService {
 	@org.springframework.beans.factory.annotation.Autowired
@@ -13,7 +10,6 @@ public class QuestaoService {
 	private br.com.rotafuturo.carreiras.repository.AreaSubRepository areaSubRepository;
 	@org.springframework.beans.factory.annotation.Autowired
 	private br.com.rotafuturo.carreiras.repository.QuestaoTipoRepository questaoTipoRepository;
-
 	public QuestaoDTO toDTO(QuestaoBean bean) {
 		if (bean == null)
 			return null;
@@ -43,7 +39,6 @@ public class QuestaoService {
 		}
 		return dto;
 	}
-
 	public QuestaoBean fromDTO(QuestaoDTO dto) {
 		if (dto == null)
 			return null;
@@ -55,22 +50,18 @@ public class QuestaoService {
 		bean.setQuestaoDatacadastro(dto.getQuestaoDatacadastro());
 		bean.setQuestaoHoracadastro(dto.getQuestaoHoracadastro());
 		bean.setQuestaoExperiencia(dto.getQuestaoExperiencia());
-		// Salvar nivel se vier
 		if (dto.getQuestaoNivel() != null) {
 			br.com.rotafuturo.carreiras.model.QuestaoNivelBean nivel = new br.com.rotafuturo.carreiras.model.QuestaoNivelBean();
 			nivel.setQuesnId(dto.getQuestaoNivel());
 			bean.setQuestaoNivel(nivel);
 		}
-		// Salvar tipo se vier
 		if (dto.getQuestaoTipo() != null) {
 			br.com.rotafuturo.carreiras.model.QuestaoTipoBean tipo = questaoTipoRepository.findById(dto.getQuestaoTipo()).orElse(null);
 			bean.setQuestaoTipo(tipo);
 		}
-		// Salvar Area
 		if (dto.getArea() != null && dto.getArea().getAreaId() != null) {
 			bean.setArea(areaRepository.findById(dto.getArea().getAreaId()).orElse(null));
 		}
-		// Salvar AreaSub
 		if (dto.getAreaSub() != null && dto.getAreaSub().getAreasId() != null) {
 			bean.setAreaSub(areaSubRepository.findById(dto.getAreaSub().getAreasId()).orElse(null));
 		}

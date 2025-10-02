@@ -1,10 +1,7 @@
-
 package br.com.rotafuturo.carreiras.controller;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,29 +16,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-
 import br.com.rotafuturo.carreiras.dto.UsuarioDTO;
 import br.com.rotafuturo.carreiras.dto.usuario.UsuarioCriacaoDTO;
 import br.com.rotafuturo.carreiras.model.UsuarioBean;
 import br.com.rotafuturo.carreiras.service.UsuarioService;
-
 @RestController
 @RequestMapping("/usuario")
 public class UsuarioController {
-
 	private final UsuarioService usuarioService;
-
 	public UsuarioController(UsuarioService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
-
 	@PostMapping("/registrar")
 	public ResponseEntity<UsuarioDTO> registrarUsuario(@RequestBody UsuarioCriacaoDTO usuarioCriacaoDTO) {
 		UsuarioBean novoUsuario = usuarioService.criarUsuario(usuarioCriacaoDTO);
 		UsuarioDTO dto = usuarioService.toDTO(novoUsuario);
 		return new ResponseEntity<>(dto, HttpStatus.CREATED);
 	}
-
 	@GetMapping("/me")
 	public ResponseEntity<UsuarioDTO> getCurrentUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -53,17 +44,14 @@ public class UsuarioController {
 		return usuario.map(u -> ResponseEntity.ok(usuarioService.toDTO(u)))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
-
 	@GetMapping("/{id}")
 	public ResponseEntity<UsuarioDTO> buscarUsuarioPorId(@PathVariable Integer id) {
 		Optional<UsuarioBean> usuario = usuarioService.buscarUsuarioPorId(id);
 		return usuario.map(u -> ResponseEntity.ok(usuarioService.toDTO(u)))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
-
 	@GetMapping("/exists")
 	public ResponseEntity<Map<String, Boolean>> checkEmail(@RequestParam String email) {
-
 		boolean exists;
 		try {
 			Optional<UsuarioBean> usuBean = usuarioService.buscarUsuarioPorEmail(email);
@@ -73,26 +61,22 @@ public class UsuarioController {
 		}
 		return ResponseEntity.ok(Map.of("exists", exists));
 	}
-
 	@GetMapping
 	public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
 		List<UsuarioBean> usuarios = usuarioService.listarTodos();
 		List<UsuarioDTO> dtos = usuarios.stream().map(usuarioService::toDTO).toList();
 		return ResponseEntity.ok(dtos);
 	}
-
 	@PutMapping("/{id}")
 	public ResponseEntity<UsuarioDTO> atualizarUsuario(@PathVariable Integer id, @RequestBody UsuarioDTO usuarioDTO) {
 		UsuarioBean atualizado = usuarioService.atualizarUsuario(id, usuarioService.fromDTO(usuarioDTO));
 		return ResponseEntity.ok(usuarioService.toDTO(atualizado));
 	}
-
 	@PatchMapping("/{id}/inativar")
 	public ResponseEntity<UsuarioBean> inativarUsuario(@PathVariable Integer id) {
 		UsuarioBean inativado = usuarioService.inativarUsuario(id);
 		return ResponseEntity.ok(inativado);
 	}
-
 	@PostMapping("/{id}/alterar-senha")
 	public ResponseEntity<?> alterarSenha(@PathVariable Integer id, @RequestBody Map<String, String> body) {
 		String novaSenha = body.get("novaSenha");

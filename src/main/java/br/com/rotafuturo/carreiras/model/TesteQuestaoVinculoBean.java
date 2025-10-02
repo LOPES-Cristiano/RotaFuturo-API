@@ -1,5 +1,4 @@
 package br.com.rotafuturo.carreiras.model;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-
 @Entity
 @Table(name = "TESTEQUESTAOVINCULO")
 public class TesteQuestaoVinculoBean {
@@ -24,18 +22,14 @@ public class TesteQuestaoVinculoBean {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "TESQV_ID")
     private Integer tesqvId;
-
     @ManyToOne
     @JoinColumn(name = "TES_ID")
     private TesteBean teste;
-
     @ManyToOne
     @JoinColumn(name = "TESQ_ID")
     private TesteQuestaoBean testeQuestao;
-
     @Column(name = "TES_ID", insertable = false, updatable = false)
     private Integer testeId;
-
     public Integer getTesqvId() { return tesqvId; }
     public void setTesqvId(Integer tesqvId) { this.tesqvId = tesqvId; }
     public TesteBean getTeste() { return teste; }
@@ -45,7 +39,6 @@ public class TesteQuestaoVinculoBean {
     public Integer getTesteId() {
         return testeId;
     }
-
     public void setTesteId(Integer testeId) {
         this.testeId = testeId;
     }

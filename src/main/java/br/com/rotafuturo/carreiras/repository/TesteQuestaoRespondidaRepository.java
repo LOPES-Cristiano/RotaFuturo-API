@@ -1,30 +1,20 @@
 package br.com.rotafuturo.carreiras.repository;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
 import br.com.rotafuturo.carreiras.model.TesteQuestaoRespondidaBean;
-
 public interface TesteQuestaoRespondidaRepository extends JpaRepository<TesteQuestaoRespondidaBean, Integer> {
-    // Buscar respostas de um usuário para um teste específico
     List<TesteQuestaoRespondidaBean> findByTesteQuestaoVinculo_Teste_TesIdAndUsuario_UsuId(Integer testeId, Integer usuarioId);
-    
-    // Buscar resposta específica de um usuário para uma pergunta específica
     @Query("SELECT t FROM TesteQuestaoRespondidaBean t WHERE t.testeQuestaoVinculo.tesqvId = :vinculoId AND t.usuario.usuId = :usuarioId")
     Optional<TesteQuestaoRespondidaBean> findByTesteQuestaoVinculo_TesqvIdAndUsuario_UsuId(
             @Param("vinculoId") Integer vinculoId, 
             @Param("usuarioId") Integer usuarioId);
-    
     @Query("SELECT t FROM TesteQuestaoRespondidaBean t WHERE t.usuario.usuId = :usuarioId AND t.testeQuestaoVinculo.tesqvId = :vinculoId")
     Optional<TesteQuestaoRespondidaBean> findByUsuario_UsuIdAndTesteQuestaoVinculo_TesqvId(
             @Param("usuarioId") Integer usuarioId,
             @Param("vinculoId") Integer vinculoId);
-            
-    // Buscar as respostas mais recentes de cada questão para um usuário e teste específico
     @Query(value = "SELECT t.* FROM TESTEQUESTAORESPONDIDA t " +
                    "INNER JOIN TESTEQUESTAOVINCULO v ON t.TESQV_ID = v.TESQV_ID " +
                    "INNER JOIN (SELECT t2.TESQV_ID, MAX(t2.TESQR_DATACADASTRO) as max_data, MAX(t2.TESQR_HORACADASTRO) as max_hora " +

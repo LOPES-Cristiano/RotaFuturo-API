@@ -1,12 +1,10 @@
 package br.com.rotafuturo.carreiras.controller;
-
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,26 +18,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.rotafuturo.carreiras.dto.PessoaDTO;
 import br.com.rotafuturo.carreiras.model.PessoaBean;
 import br.com.rotafuturo.carreiras.model.UsuarioBean;
 import br.com.rotafuturo.carreiras.service.PessoaService;
 import br.com.rotafuturo.carreiras.service.UsuarioService;
 import br.com.rotafuturo.carreiras.storage.FileCryptoUtil;
-
 @RestController
 @RequestMapping("/pessoa")
 public class PessoaController {
 	private final PessoaService pessoaService;
 	private final UsuarioService usuarioService;
-
 	@Autowired
 	public PessoaController(PessoaService pessoaService, UsuarioService usuarioService) {
 		this.pessoaService = pessoaService;
 		this.usuarioService = usuarioService;
 	}
-
 	@GetMapping("/me")
 	public ResponseEntity<PessoaDTO> getMyPessoa() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -52,7 +46,6 @@ public class PessoaController {
 		return pessoaOpt.map(p -> ResponseEntity.ok(pessoaService.toDTO(p)))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
-	
 	@GetMapping("/usuario/{usuarioId}")
 	public ResponseEntity<PessoaDTO> getPessoaByUsuarioId(@PathVariable Integer usuarioId) {
 		Optional<UsuarioBean> usuarioOpt = usuarioService.buscarUsuarioPorId(usuarioId);
@@ -63,7 +56,6 @@ public class PessoaController {
 		return pessoaOpt.map(p -> ResponseEntity.ok(pessoaService.toDTO(p)))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
-
 	@PostMapping
 	public ResponseEntity<PessoaDTO> createPessoa(@RequestBody PessoaDTO pessoaDTO) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -77,7 +69,6 @@ public class PessoaController {
 		pessoa.setPesDatacadastro(java.time.LocalDate.now());
 		pessoa.setPesHoracadastro(java.time.LocalTime.now());
 		pessoa.setPesAtivo(true);
-
 		if (pessoaDTO.getPesImagemperfil() != null && !pessoaDTO.getPesImagemperfil().isEmpty()) {
 			try {
 				Integer usuId = usuarioOpt.get().getUsuId();
@@ -110,30 +101,22 @@ public class PessoaController {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 			}
 		}
-
 		PessoaBean novaPessoa = pessoaService.createPessoa(pessoa);
 		return new ResponseEntity<>(pessoaService.toDTO(novaPessoa), HttpStatus.CREATED);
 	}
-
 	@PutMapping("/{id}")
 	public ResponseEntity<PessoaDTO> updatePessoa(@PathVariable Integer id, @RequestBody PessoaDTO pessoaDTO) {
 		Optional<PessoaBean> pessoaOpt = pessoaService.getPessoaById(id);
-
 		if (pessoaOpt.isEmpty()) {
 			return ResponseEntity.notFound().build();
 		}
-
 		PessoaBean pessoa = pessoaService.fromDTO(pessoaDTO);
-
 		pessoa.setPesId(id);
-
 		if (pessoa.getUsuario() == null) {
 			pessoa.setUsuario(pessoaOpt.get().getUsuario());
 		}
-
 		pessoa.setPesDatacadastro(pessoaOpt.get().getPesDatacadastro());
 		pessoa.setPesHoracadastro(pessoaOpt.get().getPesHoracadastro());
-
 		if (pessoa.getPesAtivo() == null) {
 			pessoa.setPesAtivo(true);
 		}
@@ -178,20 +161,17 @@ public class PessoaController {
 		PessoaBean pessoaAtualizada = pessoaService.updatePessoa(pessoa);
 		return ResponseEntity.ok(pessoaService.toDTO(pessoaAtualizada));
 	}
-
 	@GetMapping("/{id}")
 	public ResponseEntity<PessoaDTO> getPessoaById(@PathVariable Integer id) {
 		Optional<PessoaBean> pessoaOpt = pessoaService.getPessoaById(id);
 		return pessoaOpt.map(p -> ResponseEntity.ok(pessoaService.toDTO(p)))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
-
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletePessoa(@PathVariable Integer id) {
 		pessoaService.deletePessoa(id);
 		return ResponseEntity.noContent().build();
 	}
-
 	@GetMapping
 	public List<PessoaDTO> listarTodasPessoas() {
 		return pessoaService.listarTodasDTO();

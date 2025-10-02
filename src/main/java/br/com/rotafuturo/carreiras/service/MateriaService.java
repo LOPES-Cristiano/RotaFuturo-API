@@ -1,22 +1,18 @@
 package br.com.rotafuturo.carreiras.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.com.rotafuturo.carreiras.model.AreaBean;
 import br.com.rotafuturo.carreiras.model.AreaSubBean;
 import br.com.rotafuturo.carreiras.repository.AreaRepository;
 import br.com.rotafuturo.carreiras.repository.AreaSubRepository;
-
 import br.com.rotafuturo.carreiras.dto.MateriaDTO;
 import br.com.rotafuturo.carreiras.model.MateriaBean;
-
 @Service
 public class MateriaService {
 	@Autowired
 	private AreaRepository areaRepository;
 	@Autowired
 	private AreaSubRepository areaSubRepository;
-
 	public MateriaDTO toDTO(MateriaBean bean) {
 		if (bean == null)
 			return null;
@@ -36,7 +32,6 @@ public class MateriaService {
 		}
 		return dto;
 	}
-
 	public MateriaBean fromDTO(MateriaDTO dto) {
 		if (dto == null)
 			return null;
@@ -46,14 +41,12 @@ public class MateriaService {
 		bean.setMatAtivo(dto.getMatAtivo());
 		bean.setMatDatacadastro(dto.getMatDatacadastro());
 		bean.setMatHoracadastro(dto.getMatHoracadastro());
-		// Busca e vincula a área pelo ID
 		if (dto.getArea() != null) {
 			AreaBean area = areaRepository.findById(dto.getArea()).orElse(null);
 			bean.setArea(area);
 		} else {
 			bean.setArea(null);
 		}
-		// Busca e vincula a subárea pelo ID
 		if (dto.getAreaSub() != null) {
 			AreaSubBean areaSub = areaSubRepository.findById(dto.getAreaSub()).orElse(null);
 			bean.setAreaSub(areaSub);

@@ -1,10 +1,7 @@
 package br.com.rotafuturo.carreiras.service;
-
 import org.springframework.stereotype.Service;
-
 import br.com.rotafuturo.carreiras.dto.AreaDTO;
 import br.com.rotafuturo.carreiras.model.AreaBean;
-
 @Service
 public class AreaService {
 	public AreaDTO toDTO(AreaBean bean) {
@@ -18,7 +15,6 @@ public class AreaService {
 		dto.setAreaHoracadastro(bean.getAreaHoracadastro());
 		return dto;
 	}
-
 	public AreaBean fromDTO(AreaDTO dto) {
 		if (dto == null)
 			return null;

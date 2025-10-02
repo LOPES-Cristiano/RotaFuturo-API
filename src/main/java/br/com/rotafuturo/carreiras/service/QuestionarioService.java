@@ -1,8 +1,6 @@
 package br.com.rotafuturo.carreiras.service;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import br.com.rotafuturo.carreiras.dto.AreaDTO;
 import br.com.rotafuturo.carreiras.dto.AreaSubDTO;
 import br.com.rotafuturo.carreiras.dto.QuestionarioDTO;
@@ -11,14 +9,12 @@ import br.com.rotafuturo.carreiras.model.QuestionarioBean;
 import br.com.rotafuturo.carreiras.model.QuestionarioTipoBean;
 import br.com.rotafuturo.carreiras.repository.AreaRepository;
 import br.com.rotafuturo.carreiras.repository.AreaSubRepository;
-
 @Service
 public class QuestionarioService {
 	@Autowired
 	private AreaRepository areaRepository;
 	@Autowired
 	private AreaSubRepository areaSubRepository;
-
 	public QuestionarioDTO toDTO(QuestionarioBean bean) {
 		if (bean == null)
 			return null;
@@ -29,7 +25,6 @@ public class QuestionarioService {
 		dto.setQuesDatacadastro(bean.getQuesDatacadastro());
 		dto.setQuesHoracadastro(bean.getQuesHoracadastro());
 		dto.setQuesPeso(bean.getQuesPeso());
-		// Mapear o tipo de questionário
 		if (bean.getQuestionarioTipo() != null) {
 			QuestionarioTipoDTO tipoDTO = new QuestionarioTipoDTO();
 			tipoDTO.setQuestId(bean.getQuestionarioTipo().getQuestId());
@@ -37,7 +32,6 @@ public class QuestionarioService {
 			tipoDTO.setQuestAtivo(bean.getQuestionarioTipo().getQuestAtivo());
 			dto.setQuestionarioTipo(tipoDTO);
 		}
-		// Mapear area
 		if (bean.getArea() != null) {
 			AreaDTO areaDTO = new AreaDTO();
 			areaDTO.setAreaId(bean.getArea().getAreaId());
@@ -47,7 +41,6 @@ public class QuestionarioService {
 			areaDTO.setAreaHoracadastro(bean.getArea().getAreaHoracadastro());
 			dto.setArea(areaDTO);
 		}
-		// Mapear areaSub
 		if (bean.getAreaSub() != null) {
 			AreaSubDTO areaSubDTO = new AreaSubDTO();
 			areaSubDTO.setAreasId(bean.getAreaSub().getAreasId());
@@ -60,7 +53,6 @@ public class QuestionarioService {
 		}
 		return dto;
 	}
-
 	public QuestionarioBean fromDTO(QuestionarioDTO dto) {
 		if (dto == null)
 			return null;
@@ -71,7 +63,6 @@ public class QuestionarioService {
 		bean.setQuesDatacadastro(dto.getQuesDatacadastro());
 		bean.setQuesHoracadastro(dto.getQuesHoracadastro());
 		bean.setQuesPeso(dto.getQuesPeso());
-		// Mapear o tipo de questionário
 		if (dto.getQuestionarioTipo() != null) {
 			QuestionarioTipoBean tipoBean = new QuestionarioTipoBean();
 			tipoBean.setQuestId(dto.getQuestionarioTipo().getQuestId());
@@ -79,13 +70,11 @@ public class QuestionarioService {
 			tipoBean.setQuestAtivo(dto.getQuestionarioTipo().getQuestAtivo());
 			bean.setQuestionarioTipo(tipoBean);
 		}
-		// Mapear area (buscar do banco para evitar TransientObjectException)
 		if (dto.getArea() != null && dto.getArea().getAreaId() != null) {
 			br.com.rotafuturo.carreiras.model.AreaBean areaBean = areaRepository.findById(dto.getArea().getAreaId())
 					.orElse(null);
 			bean.setArea(areaBean);
 		}
-		// Mapear areaSub (buscar do banco para evitar TransientObjectException)
 		if (dto.getAreaSub() != null && dto.getAreaSub().getAreasId() != null) {
 			br.com.rotafuturo.carreiras.model.AreaSubBean areaSubBean = areaSubRepository
 					.findById(dto.getAreaSub().getAreasId()).orElse(null);

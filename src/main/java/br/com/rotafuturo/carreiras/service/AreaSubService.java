@@ -1,10 +1,7 @@
 package br.com.rotafuturo.carreiras.service;
-
 import org.springframework.stereotype.Service;
-
 import br.com.rotafuturo.carreiras.dto.AreaSubDTO;
 import br.com.rotafuturo.carreiras.model.AreaSubBean;
-
 @Service
 public class AreaSubService {
 	public AreaSubDTO toDTO(AreaSubBean bean) {
@@ -19,7 +16,6 @@ public class AreaSubService {
 		dto.setAreaId(bean.getArea() != null ? bean.getArea().getAreaId() : null);
 		return dto;
 	}
-
 	public AreaSubBean fromDTO(AreaSubDTO dto) {
 		if (dto == null)
 			return null;
@@ -29,7 +25,6 @@ public class AreaSubService {
 		bean.setAreasAtivo(true);
 		bean.setAreasDatacadastro(dto.getAreasDatacadastro());
 		bean.setAreasHoracadastro(dto.getAreasHoracadastro());
-		// AreaBean reference should be set in the controller/service using areaId
 		return bean;
 	}
 }

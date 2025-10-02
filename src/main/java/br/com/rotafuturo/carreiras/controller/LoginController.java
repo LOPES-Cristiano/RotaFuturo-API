@@ -1,5 +1,4 @@
 package br.com.rotafuturo.carreiras.controller;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -10,23 +9,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import br.com.rotafuturo.carreiras.dto.auth.LoginRequestDTO;
 import br.com.rotafuturo.carreiras.dto.auth.LoginResponseDTO;
 import br.com.rotafuturo.carreiras.security.JwtTokenProvider;
-
 @RestController
 @RequestMapping("/login")
 public class LoginController {
-
 	private final AuthenticationManager authenticationManager;
 	private final JwtTokenProvider jwtTokenProvider;
-
 	public LoginController(AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider) {
 		this.authenticationManager = authenticationManager;
 		this.jwtTokenProvider = jwtTokenProvider;
 	}
-
 	@PostMapping("/fazer-login")
 	public ResponseEntity<?> authenticateUser(@RequestBody LoginRequestDTO loginRequest) {
 		try {
