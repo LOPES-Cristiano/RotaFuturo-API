@@ -1,6 +1,7 @@
 package br.com.rotafuturo.carreiras.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -46,8 +47,8 @@ public class QuestaoBean {
 	@jakarta.persistence.Column(name = "QUESTAO_EXPERIENCIA")
 	private Integer questaoExperiencia;
 	@ManyToOne
-	@JoinColumn(name = "QUESN_ID")
-	private QuestaoNivelBean questaoNivel;
+	@JoinColumn(name = "NIV_ID")
+	private NivelBean nivel;
 	@ManyToOne
 	@JoinColumn(name = "QUET_ID")
 	private QuestaoTipoBean questaoTipo;
@@ -81,11 +82,11 @@ public class QuestaoBean {
 	public void setQuestaoExperiencia(Integer questaoExperiencia) {
 		this.questaoExperiencia = questaoExperiencia;
 	}
-	public QuestaoNivelBean getQuestaoNivel() {
-		return questaoNivel;
+	public NivelBean getNivel() {
+		return nivel;
 	}
-	public void setQuestaoNivel(QuestaoNivelBean questaoNivel) {
-		this.questaoNivel = questaoNivel;
+	public void setNivel(NivelBean nivel) {
+		this.nivel = nivel;
 	}
 	public QuestaoTipoBean getQuestaoTipo() {
 		return questaoTipo;

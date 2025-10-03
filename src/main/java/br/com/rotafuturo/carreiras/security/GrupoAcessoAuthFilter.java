@@ -1,17 +1,19 @@
 package br.com.rotafuturo.carreiras.security;
 import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 @Component
 public class GrupoAcessoAuthFilter extends OncePerRequestFilter {
-    private static final Logger logger = LoggerFactory.getLogger(GrupoAcessoAuthFilter.class);
+    private static final Logger filterLogger = LoggerFactory.getLogger(GrupoAcessoAuthFilter.class);
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
     @Override
@@ -34,8 +36,10 @@ public class GrupoAcessoAuthFilter extends OncePerRequestFilter {
                     return;
                 }
             }
-        } catch (Exception ex) {
-            logger.error("Não foi possível validar o acesso ao grupo", ex);
+        } catch (IllegalArgumentException | io.jsonwebtoken.JwtException ex) {
+            filterLogger.error("Erro na validação do token: {}", ex.getMessage(), ex);
+        } catch (SecurityException ex) {
+            filterLogger.error("Erro de segurança ao validar acesso: {}", ex.getMessage(), ex);
         }
         filterChain.doFilter(request, response);
     }

@@ -3,13 +3,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.crypto.SecretKey;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+
 import br.com.rotafuturo.carreiras.repository.UsuarioRepository;
 import br.com.rotafuturo.carreiras.service.GrupoAcessoUsuarioService;
 import io.jsonwebtoken.Claims;
@@ -24,9 +27,8 @@ import io.jsonwebtoken.security.SignatureException;
 @Component
 public class JwtTokenProvider {
 	private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
-	@Value("${app.jwtSecret}")
-	private String jwtSecretString;
-	private SecretKey key;
+	// A chave secreta é injetada diretamente no construtor
+	private final SecretKey key;
 	private final long JWT_EXPIRATION_IN_MS = 86400000; 
 	@Autowired
 	private UsuarioRepository usuarioRepository;

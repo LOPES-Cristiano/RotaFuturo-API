@@ -1,6 +1,7 @@
 package br.com.rotafuturo.carreiras.model;
 import java.time.LocalDate;
 import java.time.LocalTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,6 +41,10 @@ public class QuestionarioBean {
 	@ManyToOne
 	@JoinColumn(name = "AREAS_ID")
 	private AreaSubBean areaSub;
+	
+	@ManyToOne
+	@JoinColumn(name = "NIV_ID")
+	private NivelBean nivel;
 	public Integer getQuesId() {
 		return quesId;
 	}
@@ -87,5 +92,13 @@ public class QuestionarioBean {
 	}
 	public void setAreaSub(AreaSubBean areaSub) {
 		this.areaSub = areaSub;
+	}
+	
+	public NivelBean getNivel() {
+		return nivel;
+	}
+	
+	public void setNivel(NivelBean nivel) {
+		this.nivel = nivel;
 	}
 }

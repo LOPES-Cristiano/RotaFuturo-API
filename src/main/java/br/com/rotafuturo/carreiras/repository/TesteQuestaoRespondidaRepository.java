@@ -1,9 +1,11 @@
 package br.com.rotafuturo.carreiras.repository;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import br.com.rotafuturo.carreiras.model.TesteQuestaoRespondidaBean;
 public interface TesteQuestaoRespondidaRepository extends JpaRepository<TesteQuestaoRespondidaBean, Integer> {
     List<TesteQuestaoRespondidaBean> findByTesteQuestaoVinculo_Teste_TesIdAndUsuario_UsuId(Integer testeId, Integer usuarioId);
@@ -29,4 +31,7 @@ public interface TesteQuestaoRespondidaRepository extends JpaRepository<TesteQue
     List<TesteQuestaoRespondidaBean> findMostRecentResponsesByTesteAndUsuario(
             @Param("testeId") Integer testeId, 
             @Param("usuarioId") Integer usuarioId);
+    
+    // Método para buscar todas as respostas de um usuário
+    List<TesteQuestaoRespondidaBean> findByUsuario_UsuId(Integer usuarioId);
 }

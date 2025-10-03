@@ -1,5 +1,6 @@
 package br.com.rotafuturo.carreiras.service;
 import org.springframework.stereotype.Service;
+
 import br.com.rotafuturo.carreiras.dto.QuestaoDTO;
 import br.com.rotafuturo.carreiras.model.QuestaoBean;
 @Service
@@ -21,8 +22,8 @@ public class QuestaoService {
 		dto.setQuestaoDatacadastro(bean.getQuestaoDatacadastro());
 		dto.setQuestaoHoracadastro(bean.getQuestaoHoracadastro());
 		dto.setQuestaoExperiencia(bean.getQuestaoExperiencia());
-	dto.setQuestaoNivel(bean.getQuestaoNivel() != null ? bean.getQuestaoNivel().getQuesnId() : null);
-	dto.setQuestaoNivelDescricao(bean.getQuestaoNivel() != null ? bean.getQuestaoNivel().getQuesnDescricao() : null);
+	dto.setQuestaoNivel(bean.getNivel() != null ? bean.getNivel().getNivId() : null);
+	dto.setQuestaoNivelDescricao(bean.getNivel() != null ? bean.getNivel().getNivDescricao() : null);
 	dto.setQuestaoTipo(bean.getQuestaoTipo() != null ? bean.getQuestaoTipo().getQuetId() : null);
 	dto.setQuestaoTipoDescricao(bean.getQuestaoTipo() != null ? bean.getQuestaoTipo().getQuetDescricao() : null);
 		if (bean.getArea() != null) {
@@ -51,9 +52,9 @@ public class QuestaoService {
 		bean.setQuestaoHoracadastro(dto.getQuestaoHoracadastro());
 		bean.setQuestaoExperiencia(dto.getQuestaoExperiencia());
 		if (dto.getQuestaoNivel() != null) {
-			br.com.rotafuturo.carreiras.model.QuestaoNivelBean nivel = new br.com.rotafuturo.carreiras.model.QuestaoNivelBean();
-			nivel.setQuesnId(dto.getQuestaoNivel());
-			bean.setQuestaoNivel(nivel);
+			br.com.rotafuturo.carreiras.model.NivelBean nivel = new br.com.rotafuturo.carreiras.model.NivelBean();
+			nivel.setNivId(dto.getQuestaoNivel());
+			bean.setNivel(nivel);
 		}
 		if (dto.getQuestaoTipo() != null) {
 			br.com.rotafuturo.carreiras.model.QuestaoTipoBean tipo = questaoTipoRepository.findById(dto.getQuestaoTipo()).orElse(null);

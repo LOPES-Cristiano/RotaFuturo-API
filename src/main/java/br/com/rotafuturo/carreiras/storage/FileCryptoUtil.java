@@ -1,10 +1,10 @@
 package br.com.rotafuturo.carreiras.storage;
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.Key;
-import java.util.Base64;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 public class FileCryptoUtil {
 	private static final String ALGO = "AES";
 	private static final byte[] KEY = "rotafuturo123456".getBytes();

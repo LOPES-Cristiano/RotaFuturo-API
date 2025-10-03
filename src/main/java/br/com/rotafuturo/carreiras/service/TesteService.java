@@ -1,17 +1,16 @@
 package br.com.rotafuturo.carreiras.service;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.rotafuturo.carreiras.model.TesteBean;
-import br.com.rotafuturo.carreiras.repository.AreaRepository;
 import br.com.rotafuturo.carreiras.repository.AreaSubRepository;
 import br.com.rotafuturo.carreiras.repository.TesteRepository;
 @Service
 public class TesteService {
 	@Autowired
 	private TesteRepository testeRepository;
-	@Autowired
-	private AreaRepository areaRepository;
 	@Autowired
 	private AreaSubRepository areaSubRepository;
 	public List<TesteBean> findAll() {

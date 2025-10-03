@@ -1,0 +1,214 @@
+-- =======================================
+-- QUESTÕES ESPECÍFICAS POR SUBÁREA (CURSOS)
+-- Data: 03/10/2025
+-- Descrição: Questões direcionadas para identificar afinidade
+-- com cursos específicos dentro de cada área do ENEM
+-- =======================================
+
+USE rotafuturo;
+
+-- =======================================
+-- QUESTÕES ESPECÍFICAS POR SUBÁREA - LINGUAGENS E CÓDIGOS
+-- =======================================
+
+-- Letras
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em ensinar língua portuguesa ou literatura.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Letras';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de analisar textos literários e suas estruturas.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Letras';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por linguística e evolução da linguagem.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Letras';
+
+-- Jornalismo
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em investigar e relatar fatos importantes.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Jornalismo';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de entrevistar pessoas e contar suas histórias.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Jornalismo';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por acontecimentos atuais e sua repercussão social.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Jornalismo';
+
+-- Artes Visuais
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho habilidade para desenhar, pintar ou criar arte visual.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Artes Visuais';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de trabalhar com design gráfico ou digital.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Artes Visuais';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por história da arte e movimentos artísticos.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Linguagens e Códigos' AND s.AREAS_DESCRICAO = 'Artes Visuais';
+
+-- =======================================
+-- QUESTÕES ESPECÍFICAS POR SUBÁREA - MATEMÁTICA
+-- =======================================
+
+-- Engenharia Civil
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em projetar e construir edificações.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Matemática' AND s.AREAS_DESCRICAO = 'Engenharia Civil';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de trabalhar com materiais de construção e estruturas.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Matemática' AND s.AREAS_DESCRICAO = 'Engenharia Civil';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por infraestrutura urbana e obras públicas.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Matemática' AND s.AREAS_DESCRICAO = 'Engenharia Civil';
+
+-- Sistemas de Informação
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em desenvolver sistemas e aplicações.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Matemática' AND s.AREAS_DESCRICAO = 'Sistemas de Informação';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de resolver problemas através da programação.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Matemática' AND s.AREAS_DESCRICAO = 'Sistemas de Informação';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por banco de dados e gestão de informações.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Matemática' AND s.AREAS_DESCRICAO = 'Sistemas de Informação';
+
+-- =======================================
+-- QUESTÕES ESPECÍFICAS POR SUBÁREA - CIÊNCIAS DA NATUREZA
+-- =======================================
+
+-- Medicina
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em diagnosticar e tratar doenças.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Medicina';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de estudar anatomia e fisiologia humana.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Medicina';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por pesquisa médica e desenvolvimento de tratamentos.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Medicina';
+
+-- Enfermagem
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em cuidar diretamente de pacientes.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Enfermagem';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de trabalhar em equipe multidisciplinar de saúde.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Enfermagem';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por prevenção de doenças e promoção da saúde.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Enfermagem';
+
+-- Nutrição
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em alimentação saudável e seus benefícios.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Nutrição';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de estudar a relação entre nutrição e saúde.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Nutrição';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por elaborar dietas e planos alimentares.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências da Natureza' AND s.AREAS_DESCRICAO = 'Nutrição';
+
+-- =======================================
+-- QUESTÕES ESPECÍFICAS POR SUBÁREA - CIÊNCIAS HUMANAS
+-- =======================================
+
+-- Direito
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em defender direitos e fazer justiça.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências Humanas' AND s.AREAS_DESCRICAO = 'Direito';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de analisar leis e regulamentações.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências Humanas' AND s.AREAS_DESCRICAO = 'Direito';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por argumentação e retórica jurídica.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências Humanas' AND s.AREAS_DESCRICAO = 'Direito';
+
+-- Psicologia
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Tenho interesse em entender comportamento e mente humana.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências Humanas' AND s.AREAS_DESCRICAO = 'Psicologia';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Gosto de ajudar pessoas com problemas emocionais.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências Humanas' AND s.AREAS_DESCRICAO = 'Psicologia';
+
+INSERT INTO TESTEQUESTAO (TESQ_DATACADASTRO, TESQ_HORACADASTRO, TESQ_DESCRICAO, AREA_ID, AREAS_ID)
+SELECT CURDATE(), CURTIME(), 'Me interesso por terapias e técnicas de tratamento psicológico.', a.AREA_ID, s.AREAS_ID
+FROM AREA a JOIN AREASUB s ON a.AREA_ID = s.AREA_ID 
+WHERE a.AREA_DESCRICAO = 'Ciências Humanas' AND s.AREAS_DESCRICAO = 'Psicologia';
+
+-- =======================================
+-- VINCULAR QUESTÕES ESPECÍFICAS AOS TESTES
+-- =======================================
+
+-- Vincular questões de subáreas aos testes específicos por área
+INSERT INTO TESTEQUESTAOVINCULO (TES_ID, TESQ_ID)
+SELECT t.TES_ID, q.TESQ_ID
+FROM TESTE t
+JOIN TESTEQUESTAO q ON t.AREA_ID = q.AREA_ID
+WHERE t.AREA_ID IS NOT NULL AND q.AREAS_ID IS NOT NULL;
+
+-- =======================================
+-- CONSULTAS DE VERIFICAÇÃO PARA SUBÁREAS
+-- =======================================
+
+SELECT 'QUESTÕES POR SUBÁREA:' as Info;
+SELECT 
+    a.AREA_DESCRICAO as Area,
+    s.AREAS_DESCRICAO as SubArea,
+    COUNT(tq.TESQ_ID) as Total_Questoes
+FROM AREA a
+JOIN AREASUB s ON a.AREA_ID = s.AREA_ID
+LEFT JOIN TESTEQUESTAO tq ON s.AREAS_ID = tq.AREAS_ID
+GROUP BY a.AREA_ID, a.AREA_DESCRICAO, s.AREAS_ID, s.AREAS_DESCRICAO
+ORDER BY a.AREA_DESCRICAO, s.AREAS_DESCRICAO;
+
+-- =======================================
+-- FIM DO SCRIPT DE QUESTÕES POR SUBÁREA
+-- =======================================
