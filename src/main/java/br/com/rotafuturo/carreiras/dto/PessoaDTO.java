@@ -14,6 +14,9 @@ public class PessoaDTO {
 	private LocalDate pesDatacadastro;
 	private LocalTime pesHoracadastro;
 	private Integer usuId;
+	private Integer pesXp;
+	private Integer pesNivel;
+	
 	public String getPesImagemCapaPerfil() {
 		return pesImagemCapaPerfil;
 	}
@@ -85,5 +88,17 @@ public class PessoaDTO {
 	}
 	public void setUsuId(Integer usuId) {
 		this.usuId = usuId;
+	}
+	public Integer getPesXp() {
+		return pesXp;
+	}
+	public void setPesXp(Integer pesXp) {
+		this.pesXp = pesXp;
+	}
+	public Integer getPesNivel() {
+		return pesNivel;
+	}
+	public void setPesNivel(Integer pesNivel) {
+		this.pesNivel = pesNivel;
 	}
 }

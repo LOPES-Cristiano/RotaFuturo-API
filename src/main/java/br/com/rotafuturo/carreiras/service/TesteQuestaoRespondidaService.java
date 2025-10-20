@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import br.com.rotafuturo.carreiras.dto.TesteResultadoDTO;
 import br.com.rotafuturo.carreiras.dto.TesteSubareaResultadoDTO;
 import br.com.rotafuturo.carreiras.model.AreaBean;
@@ -77,6 +79,7 @@ public class TesteQuestaoRespondidaService {
         System.out.println("Salvando nova resposta com valor: " + testeQuestaoRespondida.getTesqrResposta() + 
             ", usuário: " + (testeQuestaoRespondida.getUsuario() != null ? testeQuestaoRespondida.getUsuario().getUsuId() : "null") + 
             ", vínculo: " + (testeQuestaoRespondida.getTesteQuestaoVinculo() != null ? testeQuestaoRespondida.getTesteQuestaoVinculo().getTesqvId() : "null"));
+        
         return testeQuestaoRespondidaRepository.save(testeQuestaoRespondida);
     }
     public void deleteById(Integer id) {

@@ -2,10 +2,12 @@ package br.com.rotafuturo.carreiras.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import br.com.rotafuturo.carreiras.dto.PessoaDTO;
 import br.com.rotafuturo.carreiras.model.PessoaBean;
 import br.com.rotafuturo.carreiras.model.UsuarioBean;
@@ -26,6 +28,8 @@ public class PessoaService {
 		dto.setPesAtivo(bean.getPesAtivo());
 		dto.setPesDatacadastro(bean.getPesDatacadastro());
 		dto.setPesHoracadastro(bean.getPesHoracadastro());
+		dto.setPesXp(bean.getPesXp() != null ? bean.getPesXp() : 0);
+		dto.setPesNivel(bean.getPesNivel() != null ? bean.getPesNivel() : 1);
 		if (bean.getUsuario() != null)
 			dto.setUsuId(bean.getUsuario().getUsuId());
 		return dto;

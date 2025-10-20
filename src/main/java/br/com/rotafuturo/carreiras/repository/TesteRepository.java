@@ -1,8 +1,11 @@
 package br.com.rotafuturo.carreiras.repository;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import br.com.rotafuturo.carreiras.model.TesteBean;
 public interface TesteRepository extends JpaRepository<TesteBean, Integer> {
     @Query("SELECT t FROM TesteBean t WHERE t.area.areaId = :areaId")
@@ -13,4 +16,7 @@ public interface TesteRepository extends JpaRepository<TesteBean, Integer> {
     List<TesteBean> findSubareaTests();
     @Query("SELECT t FROM TesteBean t WHERE t.area IS NULL")
     List<TesteBean> findVocationalTests();
+    
+    // Para importação
+    Optional<TesteBean> findByTesDescricao(String descricao);
 }
